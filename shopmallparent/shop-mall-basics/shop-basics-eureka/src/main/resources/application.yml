@@ -1,0 +1,14 @@
+
+server:
+  port: 8100
+eureka:
+  instance:
+    hostname: 127.0.0.1
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+        # \u4E0D\u8FDB\u884C\u6CE8\u518C\uFF08\u5F53\u670D\u52A1\u6CE8\u518C\u4E2D\u5FC3\u662F\u5355\u70B9\u800C\u975E\u9AD8\u53EF\u7528\u65F6\u7684\u914D\u7F6E\u65B9\u5F0F\uFF09
+    register-with-eureka: false
+         # \u4E0D\u83B7\u53D6\u6CE8\u518C\u4FE1\u606F\uFF08\u5F53\u670D\u52A1\u6CE8\u518C\u4E2D\u5FC3\u662F\u5355\u70B9\u800C\u975E\u9AD8\u53EF\u7528\u65F6\u7684\u914D\u7F6E\u65B9\u5F0F\uFF09
+    fetch-registry: false

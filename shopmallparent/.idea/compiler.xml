@@ -7,12 +7,15 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="shop-basics-eureka" />
+        <module name="shop-mall-service-api" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="shop-basics-eureka" target="1.8" />
       <module name="shop-mall-basics" target="1.8" />
+      <module name="shop-mall-service-api" target="1.8" />
       <module name="shopmallparent" target="1.8" />
+      <module name="shopmallserviceapi" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

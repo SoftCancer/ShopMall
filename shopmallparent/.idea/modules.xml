@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/shop-mall-basics/shop-basics-eureka/shop-basics-eureka.iml" filepath="$PROJECT_DIR$/shop-mall-basics/shop-basics-eureka/shop-basics-eureka.iml" />
       <module fileurl="file://$PROJECT_DIR$/shop-mall-basics/shop-mall-basics.iml" filepath="$PROJECT_DIR$/shop-mall-basics/shop-mall-basics.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shop-mall-service-api/shop-mall-service-api.iml" filepath="$PROJECT_DIR$/shop-mall-service-api/shop-mall-service-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/shopmallparent.iml" filepath="$PROJECT_DIR$/shopmallparent.iml" />
     </modules>
   </component>

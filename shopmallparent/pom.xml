@@ -19,6 +19,7 @@
 
     <modules>
         <module>shop-mall-basics</module>
+        <module>shop-mall-service-api</module>
     </modules>
 
     <properties>
