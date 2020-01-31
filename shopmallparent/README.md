@@ -57,6 +57,7 @@
 
 #项目构建
 ##A. 分布式基础设施项目
+
 --shop-mall-parent-----公共Pranet依赖
 
 ---shop-mall-basics----分布式基础设施
@@ -77,6 +78,7 @@
 
 
 ##B. 公共服务接口层
+
 ---shop-mall-service-api提供公共接口
 
 -----shop-mall-service-api-weixin 微信服务接口
@@ -96,6 +98,7 @@
 -----shop-mall-service-api-spike 秒杀服务接口
 
 ##C. 公共服务接口实现层
+
 ---shop-mall-service-impl公共接口的实现
 
 -----shop-mall-service-weixin 微信服务接口实现
@@ -115,23 +118,24 @@
 -----shop-mall-service-api-spike 秒杀服务接口
 
 ##D. 公共服务接口实体类
----shop-mall-api-dto 开放接口实体类层
 
------shop-mall-service-api-weixin-dto 微信实体类
+---shop-mall-api-entitys 开放接口实体类层
 
------shop-mall-service-api-member-dto 会员实体类
+-----shop-mall-weixin-entity 微信实体类
 
------shop-mall-service-api-sso-dto sso实体类
+-----shop-mall-service-api-member-entity 会员实体类
 
------shop-mall-service-api-item-dto 商品实体类
+-----shop-mall-service-api-sso-entity sso实体类
 
------shop-mall-service-api-search-dto 搜索实体类
+-----shop-mall-service-api-item-entity 商品实体类
 
------shop-mall-service-api-pay-dto 聚合支付实体类
+-----shop-mall-service-api-search-entity 搜索实体类
 
------shop-mall-service-api-order-dto 订单实体类
+-----shop-mall-service-api-pay-entity 聚合支付实体类
 
------shop-mall-service-api-spike-dto秒杀实体类
+-----shop-mall-service-api-order-entity 订单实体类
+
+-----shop-mall-service-api-spike-entity秒杀实体类
 
 ##E. 门户平台
 ---shop-mall-portal 门户平台
