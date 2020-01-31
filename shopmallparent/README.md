@@ -5,7 +5,8 @@
 完全符合一线城市微服务电商的需求，对中国程序猿学习微服务电商架构，有非常大的帮助，该项目涵盖从微服务电商需求讨论、数据库设计、技术选型、互联网安全架构、整合SpringCloud各自组件、分布式基础设施、使Docker+k8s+jenkins实现微服务自动化部署、项目上线域名配置、SEO优化、大数据统计分析等。
 
 #技术选型
-##A. 项目采用SpringBoot2.x+SpringCloud2.x构建微服务电商项目
+
+## A. 项目采用SpringBoot2.x+SpringCloud2.x构建微服务电商项目
 
 1.使用SpringCloudEureka作为注册中心，实现服务治理
 
@@ -19,7 +20,7 @@
 
 6.微服务API接口安全控制与单点登陆系统CAS+JWT+Oauth2.0
 
-##B. 分布式基础设施环境构建
+## B. 分布式基础设施环境构建
 
 1.分布式任务调度平台XXL-Job
 
@@ -37,7 +38,7 @@
 
 8.分布式服务追踪与调用链ZipKin
 
-##C.项目运营与部署环境
+## C.项目运营与部署环境
 
 1.分布式设施环境，统一采用docker安装
 
@@ -56,6 +57,7 @@
 #系统架构
 
 #项目构建
+
 ##A. 分布式基础设施项目
 
 --shop-mall-parent-----公共Pranet依赖
@@ -97,7 +99,7 @@
 
 -----shop-mall-service-api-spike 秒杀服务接口
 
-##C. 公共服务接口实现层
+## C. 公共服务接口实现层
 
 ---shop-mall-service-impl公共接口的实现
 
@@ -117,7 +119,7 @@
 
 -----shop-mall-service-api-spike 秒杀服务接口
 
-##D. 公共服务接口实体类
+## D. 公共服务接口实体类
 
 ---shop-mall-api-entitys 开放接口实体类层
 
@@ -137,7 +139,8 @@
 
 -----shop-mall-service-api-spike-entity秒杀实体类
 
-##E. 门户平台
+## E. 门户平台
+
 ---shop-mall-portal 门户平台
 
 -----shop-mall-portal-web 门户网站
@@ -150,12 +153,14 @@
 
 -----shop-mall-portal-cms 运营系统
 
-##F. 工具类
+## F. 工具类
+
 ---shop-mall-common 工具类
 -----shop-mall-common-core—核心工具类
 -----shop-mall-common-security-安全
 
-##G. 分布式任务调度实现
+## G. 分布式任务调度实现
+
 ---shop-mall-service-job 分布式定时任务调度
 
 -----shop-mall-service-weixin-job 微信定时任务
@@ -171,6 +176,7 @@
 -----shop-mall-service-api-spike-job 秒杀定时任务
 
 #环境要求
+
 为了能够更好的学习互联网微服务架构，该项目对环境要求非常高，建议电脑配置CPU在I5、32GB内存或者电脑采用集群化部署。
 
 1.JDK统一要求:JDK1.8K
