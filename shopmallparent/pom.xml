@@ -20,6 +20,8 @@
     <modules>
         <module>shop-mall-basics</module>
         <module>shop-mall-service-api</module>
+        <module>shop-mall-service-impl</module>
+        <module>shop-mall-api-entitys</module>
     </modules>
 
     <properties>
