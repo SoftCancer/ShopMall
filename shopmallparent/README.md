@@ -58,7 +58,7 @@
 
 #项目构建
 
-##A. 分布式基础设施项目
+## A. 分布式基础设施项目
 
 --shop-mall-parent-----公共Pranet依赖
 
@@ -79,7 +79,7 @@
 -----shop-mall-basics-codingapi-elk —分布式日志收集
 
 
-##B. 公共服务接口层
+## B. 公共服务接口层
 
 ---shop-mall-service-api提供公共接口
 
@@ -175,7 +175,7 @@
 
 -----shop-mall-service-api-spike-job 秒杀定时任务
 
-#环境要求
+# 环境要求
 
 为了能够更好的学习互联网微服务架构，该项目对环境要求非常高，建议电脑配置CPU在I5、32GB内存或者电脑采用集群化部署。
 
