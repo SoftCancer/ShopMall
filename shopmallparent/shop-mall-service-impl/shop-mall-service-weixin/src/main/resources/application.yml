@@ -1,6 +1,11 @@
-
+### 服务启动端口
 server:
-  port: 8100
+  port: 8200
+
+### 服务名称（服务注册到eureka 的名称）
+spring:
+  application:
+    name: app-weixin
 
 ### 服务注册到 eureka
 eureka:
@@ -9,6 +14,7 @@ eureka:
   client:
     service-url:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
 
     # 值为false意味着自身仅作为服务器，不作为客户端
     register-with-eureka: false

@@ -11,8 +11,15 @@ import lombok.Data;
 @Data
 public class AppEntity {
 
-    private String id;
+    private String appId;
 
-    private String name;
+    private String appName;
 
+    public AppEntity() {
+    }
+
+    public AppEntity(String appId, String appName) {
+        this.appId = appId;
+        this.appName = appName;
+    }
 }

@@ -16,6 +16,6 @@ public class WeiXinServiceImpl implements IWeiXinService {
 
     @Override
     public AppEntity getApp() {
-        return null;
+        return new AppEntity("dongl123","iPhone XS Max");
     }
 }

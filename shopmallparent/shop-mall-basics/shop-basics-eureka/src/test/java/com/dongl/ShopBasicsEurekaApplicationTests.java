@@ -1,4 +1,4 @@
-package com.dongl.shopbasicseureka;
+package com.dongl;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
