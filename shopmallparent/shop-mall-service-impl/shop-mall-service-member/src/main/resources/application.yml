@@ -1,11 +1,11 @@
 ### 服务启动端口
 server:
-  port: 8200
+  port: 8300
 
 ### 服务名称（服务注册到eureka 的名称）
 spring:
   application:
-    name: app-weixin
+    name: app-member
 
 ### 服务注册到 eureka
 eureka:
