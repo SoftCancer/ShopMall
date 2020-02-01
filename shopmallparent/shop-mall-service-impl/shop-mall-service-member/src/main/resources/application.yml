@@ -15,4 +15,19 @@ eureka:
     service-url:
       defaultZone: http://${eureka.instance.hostname}:8100/eureka
 
+### 开启Swagger API 服务  访问：http://127.0.0.1:8300/swagger-ui.html
+swagger:
+  enabled: true
+  base-package: com.dongl.member.service
+  title: 会员服务接口
+  description: 基于 SpringCloud 2.X 构建的微服务电商项目
+  version: 1.0.0
+  terms-of-service-url: https://github.com/SoftCancer/ShopMall
+  contact:
+    name: dongl
+    email: yyy.163.com
+
+
+
+
 ### 微信端口号：8200 8201 8202   会员端口号：8300 83001 83002   有序编号为了后续集群。
