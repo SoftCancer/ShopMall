@@ -1,0 +1,30 @@
+### 服务启动端口
+server:
+  port: 80
+
+### 服务名称（服务注册到eureka 的名称）
+spring:
+  application:
+    name: app-zuul
+
+### 服务注册到 eureka
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8100/eureka
+
+### 配置网关反向代理 访问：http://127.0.0.1:80/swagger-ui.html
+zuul:
+  routes:
+    api-a:
+    ### 以 /api-weixin/访问的转发到微信服务
+      path: /api-weixin/**
+      serviceId: app-weixin
+    api-b:
+      path: /api-member/**
+      serviceId: app-member
+
+
+
+
+### 微信端口号：8200 8201 8202   会员端口号：8300 83001 83002   有序编号为了后续集群。

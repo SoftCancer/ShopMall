@@ -17,6 +17,7 @@
 
     <modules>
         <module>shop-basics-eureka</module>
+        <module>shop-basics-zuul</module>
     </modules>
 
     <build>
