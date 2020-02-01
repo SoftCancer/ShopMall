@@ -17,7 +17,7 @@ eureka:
 zuul:
   routes:
     api-a:
-    ### 以 /api-weixin/访问的转发到微信服务
+    ### 以 /api-weixin/访问的转发到微信服务 访问：http://127.0.0.180/api-weixin/getApp
       path: /api-weixin/**
       serviceId: app-weixin
     api-b:
