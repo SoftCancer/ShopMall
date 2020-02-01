@@ -4,7 +4,7 @@ import com.dongl.entity.AppEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
- * @Description:
+ * @Description:  微信服务接口
  * @author: YaoGuangXun
  * @date: 2020/2/12:22
  * @Version: 1.0
