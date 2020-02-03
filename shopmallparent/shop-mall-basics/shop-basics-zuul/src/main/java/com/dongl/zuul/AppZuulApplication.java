@@ -31,7 +31,7 @@ public class AppZuulApplication {
 
 
     /**
-     *  通过 Zuul 实现 Swagger Api 的路由转发
+     *  通过 Zuul 实现 Swagger Api 的路由转发，运行时 需要开启 微信服务和会员服务
      * @Author: YaoGuangXun
      * @Date: 2020/2/1 19:04
      **/
