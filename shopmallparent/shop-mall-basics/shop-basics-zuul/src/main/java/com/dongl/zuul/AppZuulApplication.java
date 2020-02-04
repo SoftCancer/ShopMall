@@ -35,9 +35,10 @@ public class AppZuulApplication {
     /**
      *  第二版 手动获取通过 阿波罗 的 Config 获取Json
      * @Date: 2020/2/4 15:46
-     **/
-    @ApolloConfig
-    private Config config;
+     *
+        @ApolloConfig
+        private Config config;
+     */
 
     /**
      *  第三版 通过value注解 取 阿波罗的Json
@@ -81,7 +82,7 @@ public class AppZuulApplication {
      **/
     private List<SwaggerResource> getResource() {
         List<SwaggerResource> list = new ArrayList();
-        String swaggerDocument = swaggerDocument();
+//        String swaggerDocument = swaggerDocument();
         System.out.println(swaggerDocument);
         JSONArray jsonArray = JSONArray.parseArray(swaggerDocument);
         for (Object object : jsonArray) {
@@ -100,11 +101,12 @@ public class AppZuulApplication {
      * @Description: 从 阿波罗 获取配置文件
      * @Author: YaoGuangXun
      * @Date: 2020/2/4 2:38
-     **/
+     *
     private String swaggerDocument() {
         String property = config.getProperty("dongl.zuul.swaggerDocument", "");
         return property;
     }
+     */
 
     private SwaggerResource swaggerResource(String name, String location, String version) {
         SwaggerResource swaggerResource = new SwaggerResource();
