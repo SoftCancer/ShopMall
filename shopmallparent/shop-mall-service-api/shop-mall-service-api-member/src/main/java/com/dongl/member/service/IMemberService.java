@@ -1,5 +1,6 @@
 package com.dongl.member.service;
 
+import com.dongl.core.base.BaseResponse;
 import com.dongl.entity.AppEntity;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -19,5 +20,5 @@ public interface IMemberService {
      */
     @ApiOperation(value = "会员调用微信接口")
     @GetMapping("/memberToWeiXin")
-    public AppEntity memberToWeiXin();
+    public BaseResponse memberToWeiXin();
 }

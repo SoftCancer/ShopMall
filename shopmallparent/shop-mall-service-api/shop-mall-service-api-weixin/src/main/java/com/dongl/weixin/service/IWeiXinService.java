@@ -1,5 +1,6 @@
 package com.dongl.weixin.service;
 
+import com.dongl.core.base.BaseResponse;
 import com.dongl.entity.AppEntity;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -16,5 +17,5 @@ public interface IWeiXinService {
 
     @ApiOperation(value = "获取App 接口")
     @GetMapping("/getApp")
-    public AppEntity getApp();
+    public BaseResponse getApp();
 }

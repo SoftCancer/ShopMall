@@ -1,5 +1,6 @@
 package com.dongl.member.service.impl;
 
+import com.dongl.core.base.BaseResponse;
 import com.dongl.entity.AppEntity;
 import com.dongl.member.feign.IWeiXinServiceFeign;
 import com.dongl.member.service.IMemberService;
@@ -21,7 +22,7 @@ public class MemberServiceImpl implements IMemberService {
 
     // SpringCloud 的服务通讯 ：rest，feign
     @Override
-    public AppEntity memberToWeiXin() {
+    public BaseResponse memberToWeiXin() {
         return weiXinServiceFeign.getApp();
     }
 }
