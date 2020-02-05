@@ -1,19 +1,20 @@
 package com.dongl.weixin.mp.handler;
 
+import com.dongl.core.constants.Constants;
+import com.dongl.core.utils.RedisUtil;
 import com.dongl.core.utils.RegexUtils;
 import com.dongl.weixin.mp.builder.TextBuilder;
-import com.dongl.weixin.mp.utils.JsonUtils;
 import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.common.session.WxSessionManager;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlMessage;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
-import java.util.Random;
 
 import static me.chanjar.weixin.common.api.WxConsts.XmlMsgType;
 
@@ -29,6 +30,9 @@ public class MsgHandler extends AbstractHandler {
     // 默认消息
     @Value("${dongl.weixin.default.template.code.message}")
     private String defaultMsg ;
+
+    @Autowired
+    private RedisUtil redisUtil;
 
     @Override
     public WxMpXmlOutMessage handle(WxMpXmlMessage wxMessage,
@@ -63,8 +67,9 @@ public class MsgHandler extends AbstractHandler {
         logger.info("收到用户发送的消息："+ msg);
 
         if (RegexUtils.checkMobile(msg)){
-            int registCode =  registCode();
-            content = templateMsg.replaceAll("templateMsg",registCode+"");
+            String registCode =  String.valueOf(registCode());
+            content = templateMsg.replaceAll("templateMsg",registCode);
+            redisUtil.setString(Constants.WEIXINCODE_KEY+"_"+msg,registCode,Constants.WEIXINCODE_TIMEOUT);
             new TextBuilder().build(content, wxMessage, weixinService);
         }
 
