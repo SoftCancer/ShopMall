@@ -14,14 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
  * @Version: 1.0
  */
 @RestController
-public class WeiXinServiceImpl implements IWeiXinService {
-
-    @Autowired
-    private BaseApiService baseApiService;
+public class WeiXinServiceImpl extends BaseApiService implements IWeiXinService {
 
     @Override
     public BaseResponse getApp() {
         AppEntity appEntity = new AppEntity("feign","你的奖品是：iPhone XS Max");
-        return baseApiService.setResultSuccess(appEntity);
+        return setResultSuccess(appEntity);
     }
 }
