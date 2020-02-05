@@ -102,79 +102,79 @@
 
 ## C. 公共服务接口实现层
 
----shop-mall-service-impl公共接口的实现
+---shop-mall-service-impl     公共接口的实现
 
------shop-mall-service-weixin 微信服务接口实现
+-----shop-mall-service-weixin   微信服务接口实现
 
------shop-mall-service-member会员服务接口实现
+-----shop-mall-service-member   会员服务接口实现
 
------shop-mall-service-api-sso sso服务接口实现
+-----shop-mall-service-sso sso  服务接口实现
 
------shop-mall-service-tem商品服务接口实现
+-----shop-mall-service-tem      商品服务接口实现
 
------shop-mall-service-search 搜索服务接口实现
+-----shop-mall-service-search   搜索服务接口实现
 
------shop-mall-service-pay聚合支付平台接口实现
+-----shop-mall-service-pay      聚合支付平台接口实现
 
------shop-mall-service-order订单服务接口实现
+-----shop-mall-service-order    订单服务接口实现
 
------shop-mall-service-api-spike 秒杀服务接口
+-----shop-mall-service-spike 秒杀服务接口
 
 ## D. 公共服务接口实体类
 
----shop-mall-api-entitys 开放接口实体类层
+---shop-mall-api-entitys      开放接口实体类层
 
------shop-mall-weixin-entity 微信实体类
+-----shop-mall-weixin-entity  微信实体类
 
------shop-mall-service-api-member-entity 会员实体类
+-----shop-mall-member-entity  会员实体类
 
------shop-mall-service-api-sso-entity sso实体类
+-----shop-mall-sso-entity     sso实体类
 
------shop-mall-service-api-item-entity 商品实体类
+-----shop-mall-item-entity    商品实体类
 
------shop-mall-service-api-search-entity 搜索实体类
+-----shop-mall-search-entity  搜索实体类
 
------shop-mall-service-api-pay-entity 聚合支付实体类
+-----shop-mall-pay-entity     聚合支付实体类
 
------shop-mall-service-api-order-entity 订单实体类
+-----shop-mall-order-entity   订单实体类
 
------shop-mall-service-api-spike-entity秒杀实体类
+-----shop-mall-spike-entity   秒杀实体类
 
 ## E. 门户平台
 
----shop-mall-portal 门户平台
+---shop-mall-portal           门户平台
 
------shop-mall-portal-web 门户网站
+-----shop-mall-portal-web     门户网站
 
------shop-mall-portal-sso 单点登陆系统
+-----shop-mall-portal-sso     单点登陆系统
 
------shop-mall-portal-search 搜索系统
+-----shop-mall-portal-search  搜索系统
 
------shop-mall-portal-spike 秒杀系统
+-----shop-mall-portal-spike   秒杀系统
 
------shop-mall-portal-cms 运营系统
+-----shop-mall-portal-cms     运营系统
 
 ## F. 工具类
 
----shop-mall-common 工具类
------shop-mall-common-core—核心工具类
------shop-mall-common-security-安全
+---shop-mall-common             工具类
+-----shop-mall-common-core      核心工具类
+-----shop-mall-common-security  安全
 
 ## G. 分布式任务调度实现
 
----shop-mall-service-job 分布式定时任务调度
+---shop-mall-service-job              分布式定时任务调度
 
------shop-mall-service-weixin-job 微信定时任务
+-----shop-mall-service-weixin-job     微信定时任务
 
------shop-mall-service-member-job 会员定时任务
+-----shop-mall-service-member-job     会员定时任务
 
------shop-mall-service-tem-job 商品定时任务
+-----shop-mall-service-tem-job        商品定时任务
 
------shop-mall-service-search-job 搜索定时任务
+-----shop-mall-service-search-job     搜索定时任务
 
------shop-mall-service-order-job 订单定时任务
+-----shop-mall-service-order-job      订单定时任务
 
------shop-mall-service-api-spike-job 秒杀定时任务
+-----shop-mall-service-spike-job  秒杀定时任务
 
 # 环境要求
 
