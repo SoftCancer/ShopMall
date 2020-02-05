@@ -45,8 +45,8 @@ public class WeiXinVerificationServiceImpl extends BaseApiService implements IWe
             return setResultError("注册码不正确！");
         }
 
-        redisUtil.delKey(redisKey);
         // 4. 成功移除 参数
+        redisUtil.delKey(redisKey);
         return setResultSuccess();
     }
 }

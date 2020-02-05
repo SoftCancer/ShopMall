@@ -27,17 +27,25 @@
     </modules>
 
     <dependencies>
-        <!--引入Swagger api 依赖-->
+
+        <!--引入微信实体类层-->
         <dependency>
-            <groupId>com.spring4all</groupId>
-            <artifactId>swagger-spring-boot-starter</artifactId>
-            <version>1.9.0.RELEASE</version>
+            <groupId>com.dongl</groupId>
+            <artifactId>shop-mall-member-entity</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <!--引入shop-mall-common-core 依赖-->
         <dependency>
             <groupId>com.dongl</groupId>
             <artifactId>shop-mall-common-core</artifactId>
             <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <!--引入Swagger api 依赖-->
+        <dependency>
+            <groupId>com.spring4all</groupId>
+            <artifactId>swagger-spring-boot-starter</artifactId>
+            <version>1.9.0.RELEASE</version>
         </dependency>
     </dependencies>
 

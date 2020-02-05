@@ -13,7 +13,15 @@
     <packaging>pom</packaging>
     <modules>
         <module>shop-mall-weixin-entity</module>
+        <module>shop-mall-member-entity</module>
     </modules>
 
-
+    <dependencies>
+        <!--引入Swagger api 依赖-->
+        <dependency>
+            <groupId>com.spring4all</groupId>
+            <artifactId>swagger-spring-boot-starter</artifactId>
+            <version>1.9.0.RELEASE</version>
+        </dependency>
+    </dependencies>
 </project>
