@@ -17,6 +17,13 @@
     </modules>
 
     <dependencies>
+
+        <dependency>
+            <groupId>com.dongl</groupId>
+            <artifactId>shop-mall-common-core</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
         <!-- feign组件 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -42,7 +49,6 @@
             <artifactId>guava</artifactId>
             <version>20.0</version>
         </dependency>
-
 
     </dependencies>
 
