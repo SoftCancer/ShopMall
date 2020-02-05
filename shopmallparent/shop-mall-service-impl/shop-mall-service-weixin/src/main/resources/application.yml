@@ -1,25 +1,25 @@
-logging:
-  level:
-    org.springframework.web: INFO
-    com.github.binarywang.demo.wx.mp: DEBUG
-    me.chanjar.weixin: DEBUG
-wx:
-  mp:
-    configs:
-      - appId: wx3caf9762ead9e312                   # （一个公众号的appid）
-        secret: b59ddea9767c77a220af4e4f0d4e57d6    # 公众号的appsecret）
-        token: dongl                                #（接口配置里的Token值）
-
-dongl:
-  weixin:
-    template :
-      code:
+#logging:
+#  level:
+#    org.springframework.web: INFO
+#    com.github.binarywang.demo.wx.mp: DEBUG
+#    me.chanjar.weixin: DEBUG
+#wx:
+#  mp:
+#    configs:
+#      - appId: wx3caf9762ead9e312                   # （一个公众号的appid）
+#        secret: b59ddea9767c77a220af4e4f0d4e57d6    # 公众号的appsecret）
+#        token: dongl                                #（接口配置里的Token值）
+#
+#dongl:
+#  weixin:
+#    template :
+#      code:
 #        message: 欢迎您关注 “姚广玉酷跑测试公众号”，点击网址：<a href="http://dongl.natapp1.cc/getApp"> 领取100元红包 ！ </a>，手慢则无。
-        message: 您的注册码为:templateMsg，请关注<a href="http://dongl.natapp1.cc/getApp">姚广玉酷跑测试公众号</a>，并有机会领取100元红包 ！，期待你的加入，感谢！
-    default:
-      template :
-            code:
-              message: 您的消息，已成功投送到火星之巅，我们将及时回复您。
+#        message: 您的注册码为:templateMsg，请关注<a href="http://dongl.natapp1.cc/getApp">姚广玉酷跑测试公众号</a>，并有机会领取100元红包 ！，期待你的加入，感谢！
+#    default:
+#      template :
+#            code:
+#              message: 您的消息，已成功投送到火星之巅，我们将及时回复您。
 
 
 spring:
