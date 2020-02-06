@@ -1,8 +1,10 @@
 package com.dongl.weixin.mp.handler;
 
+import com.dongl.core.base.BaseResponse;
 import com.dongl.core.constants.Constants;
 import com.dongl.core.utils.RedisUtil;
 import com.dongl.core.utils.RegexUtils;
+import com.dongl.weixin.feign.IMemberServiceFeign;
 import com.dongl.weixin.mp.builder.TextBuilder;
 import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.common.session.WxSessionManager;
@@ -24,6 +26,8 @@ import static me.chanjar.weixin.common.api.WxConsts.XmlMsgType;
 @Component
 public class MsgHandler extends AbstractHandler {
 
+    private static String MOBIEL_IS_EXIST = "手机号：m% ,已经被注册。";
+
     // 模板消息
     @Value("${dongl.weixin.template.code.message}")
     private String templateMsg ;
@@ -33,6 +37,10 @@ public class MsgHandler extends AbstractHandler {
 
     @Autowired
     private RedisUtil redisUtil;
+
+    @Autowired
+    private IMemberServiceFeign memberServiceFeign;
+
 
     @Override
     public WxMpXmlOutMessage handle(WxMpXmlMessage wxMessage,
@@ -56,21 +64,32 @@ public class MsgHandler extends AbstractHandler {
             e.printStackTrace();
         }
 
-        //TODO 组装回复消息
-//        String content = "收到信息内容：" + JsonUtils.toJson(wxMessage);
-
-        String msgType = wxMessage.getMsgType();
-        logger.info("公众号回复消息： "+ templateMsg + "  消息类型：" + msgType);
         String content = "你好，请输入 ：您的手机号 ！";
 
-        String msg = wxMessage.getContent();
-        logger.info("收到用户发送的消息："+ msg);
+        String formContent = wxMessage.getContent();
+        logger.info("收到用户发送的消息："+ formContent);
 
-        if (RegexUtils.checkMobile(msg)){
+        // 判断是否为手机号
+        if (RegexUtils.checkMobile(formContent)){
+
+            BaseResponse baseResponse = memberServiceFeign.mobileExist(formContent);
+            Integer code = baseResponse.getCode();
+
+            // 用户存在返回，手机号被注册
+            if (code.equals(Constants.HTTP_RES_CODE_200)){
+                return new TextBuilder().build(MOBIEL_IS_EXIST.replaceAll("m%",formContent), wxMessage, weixinService);
+            }
+            // 用户不为空也不存在，返回异常时的处理
+            if (!code.equals(Constants.HTTP_RES_CODE_EXISTMOBILE_203)){
+                return new TextBuilder().build(baseResponse.getMsg(), wxMessage, weixinService);
+            }
+            // 获取随机码
             String registCode =  String.valueOf(registCode());
+            // 随机码替换指定字符串
             content = templateMsg.replaceAll("templateMsg",registCode);
-            redisUtil.setString(Constants.WEIXINCODE_KEY+"_"+msg,registCode,Constants.WEIXINCODE_TIMEOUT);
-            new TextBuilder().build(content, wxMessage, weixinService);
+            // 把随机码存入redis 中
+            redisUtil.setString(Constants.WEIXINCODE_KEY+"_"+formContent,registCode,Constants.WEIXINCODE_TIMEOUT);
+           return new TextBuilder().build(content, wxMessage, weixinService);
         }
 
         return new TextBuilder().build(content, wxMessage, weixinService);

@@ -18,6 +18,12 @@
             <artifactId>shop-mall-service-api-weixin</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        <!-- 微信引入会员接口依赖-->
+        <dependency>
+            <groupId>com.dongl</groupId>
+            <artifactId>shop-mall-service-api-member</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 
         <!-- 引入微信WXJava 框架实现 公众号 -->
         <dependency>

@@ -25,6 +25,16 @@ public class MemberServiceImpl extends BaseApiService implements IMemberService 
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private IWeiXinServiceFeign weiXinServiceFeign;
+
+    // SpringCloud 的服务通讯 ：rest，feign
+    @Override
+    public BaseResponse memberToWeiXin() {
+        return weiXinServiceFeign.getApp();
+    }
+
+
     @Override
     public BaseResponse mobileExist(String mobile) {
         // 1. 判断手机号是否为空
