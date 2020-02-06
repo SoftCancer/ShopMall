@@ -20,6 +20,7 @@
 #      template :
 #            code:
 #              message: 您的消息，已成功投送到火星之巅，我们将及时回复您。
+###服务注册到eureka地址
 
 
 spring:
@@ -45,7 +46,8 @@ spring:
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://47.94.10.48:3306/shopmall
-
+  main:
+    allow-bean-definition-overriding: true
 
 #        aesKey: 111 （接口配置里的EncodingAESKey值）
 #      - appId: 2222 （另一个公众号的appid，以下同上）

@@ -2,10 +2,13 @@ package com.dongl.member.service.impl;
 
 import com.dongl.core.base.BaseApiService;
 import com.dongl.core.base.BaseResponse;
+import com.dongl.core.constants.Constants;
 import com.dongl.core.utils.MD5Util;
 import com.dongl.entity.UserEntity;
+import com.dongl.member.feign.IWeiXinVerificationServiceFeign;
 import com.dongl.member.mapper.UserMapper;
 import com.dongl.member.service.IMemberRegisterService;
+import com.dongl.weixin.service.IWeiXinVerificationService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,8 +28,8 @@ public class MemberRegisterServiceImpl extends BaseApiService implements IMember
     @Autowired
     private UserMapper userMapper;
 
-//    @Autowired
-//    private IWeiXinVerificationService weiXinVerificationService;
+    @Autowired
+    private IWeiXinVerificationServiceFeign weiXinVerificationServiceFeign;
 
     @Transactional
     @Override
@@ -45,10 +48,10 @@ public class MemberRegisterServiceImpl extends BaseApiService implements IMember
         }
 
         // 2. 判断注册码是否正确
-//         BaseResponse resultVerification = weiXinVerificationService.verificationCode(userEntity.getMobile(),registCode);
-//        if (!resultVerification.getCode().equals(Constants.HTTP_RES_CODE_200)){
-//            return setResultError(resultVerification.getMsg());
-//        }
+         BaseResponse resultVerification = weiXinVerificationServiceFeign.verificationCode(userEntity.getMobile(),registCode);
+        if (!resultVerification.getCode().equals(Constants.HTTP_RES_CODE_200)){
+            return setResultError(resultVerification.getMsg());
+        }
 
         // 3.密码加密
         passward = MD5Util.MD5(passward);

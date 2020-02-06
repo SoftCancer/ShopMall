@@ -36,12 +36,12 @@ public class WeiXinVerificationServiceImpl extends BaseApiService implements IWe
 
         // 2.从Redis 中获取数据，判断是否为空
         String redisKey = Constants.WEIXINCODE_KEY+"_"+phone ;
-        String codeValue = redisUtil.getString(redisKey);
-        if (StringUtils.isBlank(codeValue)){
+        String redisCode = redisUtil.getString(redisKey);
+        if (StringUtils.isBlank(redisCode)){
             return setResultError("注册码已过期！");
         }
         // 3. 判断参数和Redis中存储的是否相等
-        if (!weixinCode.equals(codeValue)){
+        if (!weixinCode.equals(redisCode)){
             return setResultError("注册码不正确！");
         }
 
