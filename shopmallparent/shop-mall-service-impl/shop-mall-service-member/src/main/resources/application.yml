@@ -49,6 +49,12 @@ spring:
   main:
     allow-bean-definition-overriding: true
 
+logging:
+  level:
+    com.dongl.member.mapper: DEBUG
+
+
+
 #        aesKey: 111 （接口配置里的EncodingAESKey值）
 #      - appId: 2222 （另一个公众号的appid，以下同上）
 #        secret: 1111

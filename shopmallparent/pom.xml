@@ -23,6 +23,7 @@
         <module>shop-mall-service-impl</module>
         <module>shop-mall-api-entitys</module>
         <module>shop-mall-common</module>
+        <module>shop-mall-dto</module>
     </modules>
 
     <properties>

@@ -1,7 +1,7 @@
 package com.dongl.member.service;
 
 import com.dongl.core.base.BaseResponse;
-import com.dongl.entity.UserEntity;
+import com.dongl.member.input.dto.UserInpDTO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
@@ -22,5 +22,5 @@ public interface IMemberRegisterService {
      **/
     @PostMapping("/register")
     @ApiOperation(value = "会员用户注册信息接口")
-    BaseResponse registeredUser(@RequestBody UserEntity userEntity, @RequestParam("registCode") String registCode);
+    BaseResponse registeredUser(@RequestBody UserInpDTO userInpDTO, @RequestParam("registCode") String registCode);
 }

@@ -31,7 +31,7 @@
         <!--引入微信实体类层-->
         <dependency>
             <groupId>com.dongl</groupId>
-            <artifactId>shop-mall-member-entity</artifactId>
+            <artifactId>shop-mall-member-dto</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <!--引入shop-mall-common-core 依赖-->
