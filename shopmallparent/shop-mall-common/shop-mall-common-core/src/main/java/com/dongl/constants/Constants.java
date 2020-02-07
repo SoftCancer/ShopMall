@@ -28,7 +28,7 @@ public interface Constants {
     Integer HTTP_RES_CODE_EXISTMOBILE_203 = 203;
 
     // token
-    String MEMBER_TOKEN_KEYPREFIX = "mayikt.member.login";
+    String MEMBER_TOKEN_KEYPREFIX = "dongl.member.login_";
 
     // 安卓的登陆类型
     String MEMBER_LOGIN_TYPE_ANDROID = "Android";

@@ -51,8 +51,8 @@ public class MemberLoginServiceImpl extends BaseApiService implements IMemberLog
         if (StringUtils.isEmpty(loginType)) {
             return setResultError("登陆类型不能为空!");
         }
-        if (!(loginType.equals(Constants.MEMBER_LOGIN_TYPE_ANDROID) || loginType.equals(Constants.MEMBER_LOGIN_TYPE_IOS)
-                || loginType.equals(Constants.MEMBER_LOGIN_TYPE_PC))) {
+        if (!(loginType.equalsIgnoreCase(Constants.MEMBER_LOGIN_TYPE_ANDROID) || loginType.equalsIgnoreCase(Constants.MEMBER_LOGIN_TYPE_IOS)
+                || loginType.equalsIgnoreCase(Constants.MEMBER_LOGIN_TYPE_PC))) {
             return setResultError("登陆类型出现错误!");
         }
 
@@ -81,8 +81,7 @@ public class MemberLoginServiceImpl extends BaseApiService implements IMemberLog
         // 5. 生成新的token
         String token = generateToken.createToken(Constants.MEMBER_TOKEN_KEYPREFIX, userId + "",
                 Constants.MEMBRE_LOGIN_TOKEN_TIME);
-        JSONObject tokenData = new JSONObject();
-        tokenData.put("token", token);
+
         // 6.存入在数据库中
         UserTokenDo userToken = new UserTokenDo();
         userToken.setUserId(userId);
@@ -90,7 +89,10 @@ public class MemberLoginServiceImpl extends BaseApiService implements IMemberLog
         userToken.setToken(token);
         userToken.setDeviceInfor(deviceInfor);
         userTokenMapper.insertUserToken(userToken);
-        return setResultSuccess(userTokenDo);
+
+        JSONObject tokenData = new JSONObject();
+        tokenData.put("token", token);
+        return setResultSuccess(tokenData);
 
     }
 }
