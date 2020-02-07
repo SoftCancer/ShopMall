@@ -5,6 +5,7 @@ import com.dongl.base.BaseApiService;
 import com.dongl.base.BaseResponse;
 import com.dongl.constants.Constants;
 import com.dongl.core.token.GenerateToken;
+import com.dongl.core.transaction.RedisDataSoureceTransaction;
 import com.dongl.core.utils.MD5Util;
 import com.dongl.member.input.dto.UserLoginInpDTO;
 import com.dongl.member.mapper.UserMapper;
@@ -13,7 +14,9 @@ import com.dongl.member.mapper.entity.UserDO;
 import com.dongl.member.mapper.entity.UserTokenDo;
 import com.dongl.member.service.IMemberLoginService;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.ibatis.transaction.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.TransactionStatus;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,6 +38,9 @@ public class MemberLoginServiceImpl extends BaseApiService implements IMemberLog
 
     @Autowired
     private UserTokenMapper userTokenMapper;
+
+    @Autowired
+    private RedisDataSoureceTransaction redisDataSoureceTransaction;
 
     @Override
     public BaseResponse<JSONObject> login(@RequestBody UserLoginInpDTO userLoginInpDTO) {
@@ -67,32 +73,52 @@ public class MemberLoginServiceImpl extends BaseApiService implements IMemberLog
         if (userDo == null) {
             return setResultError("用户名称与密码错误!");
         }
-        // 3.查询之前是否有过登陆
-        Long userId = userDo.getUserid();
-        UserTokenDo userTokenDo = userTokenMapper.selectByUserIdAndLoginType(userId, loginType);
-        if (userTokenDo != null) {
-            // 4.清除之前的token
-            String token = userTokenDo.getToken();
-            Boolean removeToken = generateToken.removeToken(token);
-            if (removeToken) {
-                userTokenMapper.updateTokenAvailability(userId, loginType);
+
+        TransactionStatus transactionStatus = null;
+        try {
+            // 3.查询之前是否有过登陆
+            Long userId = userDo.getUserid();
+            UserTokenDo userTokenDo = userTokenMapper.selectByUserIdAndLoginType(userId, loginType);
+            // 开启事务
+            transactionStatus = redisDataSoureceTransaction.begin();
+
+            if (userTokenDo != null) {
+                // 4.清除之前的token
+                String token = userTokenDo.getToken();
+                Boolean removeToken = generateToken.removeToken(token);
+                Integer up  =  userTokenMapper.updateTokenAvailability(userId, loginType);
+                if (!toDaoResult(up)){
+                    redisDataSoureceTransaction.rollback(transactionStatus);
+                }
+            }
+            // 5. 生成新的token
+            String token = generateToken.createToken(Constants.MEMBER_TOKEN_KEYPREFIX, userId + "",
+                    Constants.MEMBRE_LOGIN_TOKEN_TIME);
+
+            // 6.存入在数据库中
+            UserTokenDo userToken = new UserTokenDo();
+            userToken.setUserId(userId);
+            userToken.setLoginType(userLoginInpDTO.getLoginType());
+            userToken.setToken(token);
+            userToken.setDeviceInfor(deviceInfor);
+            Integer insertUserToken = userTokenMapper.insertUserToken(userToken);
+            if (!toDaoResult(insertUserToken)) {
+                redisDataSoureceTransaction.rollback(transactionStatus);
+                return setResultError("系统错误！");
+            }
+            JSONObject tokenData = new JSONObject();
+            tokenData.put("token", token);
+            redisDataSoureceTransaction.commit(transactionStatus);
+            return setResultSuccess(tokenData);
+
+        } catch (Exception e) {
+            try {
+                redisDataSoureceTransaction.rollback(transactionStatus);
+
+            } catch (Exception e1) {
+                e1.printStackTrace();
             }
         }
-        // 5. 生成新的token
-        String token = generateToken.createToken(Constants.MEMBER_TOKEN_KEYPREFIX, userId + "",
-                Constants.MEMBRE_LOGIN_TOKEN_TIME);
-
-        // 6.存入在数据库中
-        UserTokenDo userToken = new UserTokenDo();
-        userToken.setUserId(userId);
-        userToken.setLoginType(userLoginInpDTO.getLoginType());
-        userToken.setToken(token);
-        userToken.setDeviceInfor(deviceInfor);
-        userTokenMapper.insertUserToken(userToken);
-
-        JSONObject tokenData = new JSONObject();
-        tokenData.put("token", token);
-        return setResultSuccess(tokenData);
-
+        return setResultError("系统错误！");
     }
 }

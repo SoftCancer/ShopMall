@@ -50,4 +50,8 @@ public class BaseApiService<T> {
 		return new BaseResponse<T>(code, msg, data);
 	}
 
+    // 对数据库层返回的数据判断
+    public Boolean toDaoResult(int result) {
+        return result > 0 ? true : false;
+    }
 }
