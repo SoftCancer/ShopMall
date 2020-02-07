@@ -24,6 +24,7 @@
         <module>shop-mall-api-entitys</module>
         <module>shop-mall-common</module>
         <module>shop-mall-dto</module>
+        <module>shop-mall-portal</module>
     </modules>
 
     <properties>
