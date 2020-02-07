@@ -1,8 +1,8 @@
 package com.dongl.core.error;
 
 import com.alibaba.fastjson.JSONObject;
-import com.dongl.core.base.BaseApiService;
-import com.dongl.core.base.BaseResponse;
+import com.dongl.base.BaseApiService;
+import com.dongl.base.BaseResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
