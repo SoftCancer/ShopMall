@@ -1,7 +1,7 @@
 package com.dongl.member.service;
 
-import com.dongl.core.base.BaseResponse;
-import com.dongl.entity.AppEntity;
+import com.dongl.base.BaseResponse;
+import com.dongl.member.output.dto.UserOutDTO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -33,4 +33,14 @@ public interface IMemberService {
     @PostMapping("mobileExist")
     BaseResponse mobileExist(@RequestParam("mobile") String mobile);
 
+
+    /**
+     * 根据token查询用户信息
+     *
+     * @return
+     */
+    @GetMapping("/getUserInfo")
+    @ApiOperation(value = "/getUserInfo")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "query",name = "token",dataType = "String",required = true,value = "用户token")})
+    BaseResponse<UserOutDTO> getInfo(@RequestParam("token") String token);
 }

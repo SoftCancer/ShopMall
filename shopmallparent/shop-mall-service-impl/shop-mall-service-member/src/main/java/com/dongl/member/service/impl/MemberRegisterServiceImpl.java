@@ -1,9 +1,9 @@
 package com.dongl.member.service.impl;
 
-import com.dongl.core.base.BaseApiService;
-import com.dongl.core.base.BaseResponse;
+import com.dongl.base.BaseApiService;
+import com.dongl.base.BaseResponse;
 import com.dongl.core.bean.BeanConversionUtils;
-import com.dongl.core.constants.Constants;
+import com.dongl.constants.Constants;
 import com.dongl.core.utils.MD5Util;
 import com.dongl.member.feign.IWeiXinVerificationServiceFeign;
 import com.dongl.member.input.dto.UserInpDTO;

@@ -1,6 +1,6 @@
 package com.dongl.member.service;
 
-import com.dongl.core.base.BaseResponse;
+import com.dongl.base.BaseResponse;
 import com.dongl.member.input.dto.UserInpDTO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

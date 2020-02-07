@@ -1,11 +1,10 @@
 package com.dongl.weixin.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.dongl.core.base.BaseApiService;
-import com.dongl.core.base.BaseResponse;
-import com.dongl.core.constants.Constants;
+import com.dongl.base.BaseApiService;
+import com.dongl.base.BaseResponse;
+import com.dongl.constants.Constants;
 import com.dongl.core.utils.RedisUtil;
-import com.dongl.core.utils.RegexUtils;
 import com.dongl.weixin.service.IWeiXinVerificationService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

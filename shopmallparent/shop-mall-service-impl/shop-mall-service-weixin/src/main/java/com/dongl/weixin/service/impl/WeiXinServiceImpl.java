@@ -1,10 +1,9 @@
 package com.dongl.weixin.service.impl;
 
-import com.dongl.core.base.BaseApiService;
-import com.dongl.core.base.BaseResponse;
+import com.dongl.base.BaseApiService;
+import com.dongl.base.BaseResponse;
 import com.dongl.entity.AppEntity;
 import com.dongl.weixin.service.IWeiXinService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 /**

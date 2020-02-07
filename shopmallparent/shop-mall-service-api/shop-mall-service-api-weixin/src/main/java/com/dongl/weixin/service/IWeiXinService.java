@@ -1,7 +1,6 @@
 package com.dongl.weixin.service;
 
-import com.dongl.core.base.BaseResponse;
-import com.dongl.entity.AppEntity;
+import com.dongl.base.BaseResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;

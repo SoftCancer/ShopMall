@@ -1,7 +1,7 @@
 package com.dongl.weixin.mp.handler;
 
-import com.dongl.core.base.BaseResponse;
-import com.dongl.core.constants.Constants;
+import com.dongl.base.BaseResponse;
+import com.dongl.constants.Constants;
 import com.dongl.core.utils.RedisUtil;
 import com.dongl.core.utils.RegexUtils;
 import com.dongl.weixin.feign.IMemberServiceFeign;
