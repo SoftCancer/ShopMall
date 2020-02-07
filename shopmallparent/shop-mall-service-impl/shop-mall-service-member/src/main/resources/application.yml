@@ -20,8 +20,8 @@ spring:
   datasource:
     username: root
     password: 123456
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://47.94.10.48:3306/shopmall
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://47.94.10.48:3306/shopmall?useUnicode=true&characterEncoding=utf8
   main:
     allow-bean-definition-overriding: true
 
