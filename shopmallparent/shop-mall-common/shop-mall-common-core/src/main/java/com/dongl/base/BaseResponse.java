@@ -1,4 +1,4 @@
-package com.dongl.core.base;
+package com.dongl.base;
 
 import lombok.Data;
 

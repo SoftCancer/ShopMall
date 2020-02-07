@@ -1,6 +1,6 @@
-package com.dongl.core.base;
+package com.dongl.base;
 
-import com.dongl.core.constants.Constants;
+import com.dongl.constants.Constants;
 import org.springframework.stereotype.Component;
 
 
