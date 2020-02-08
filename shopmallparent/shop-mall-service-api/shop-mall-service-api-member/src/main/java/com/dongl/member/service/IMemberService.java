@@ -23,9 +23,9 @@ public interface IMemberService {
     /*
      * 会员服务接口调用微信接口
      */
-    @ApiOperation(value = "会员调用微信接口")
-    @GetMapping("/memberToWeiXin")
-    public BaseResponse memberToWeiXin();
+//    @ApiOperation(value = "会员调用微信接口")
+//    @GetMapping("/memberToWeiXin")
+//    public BaseResponse memberToWeiXin();
 
 
     @ApiOperation(value = "根据手机号查询数据")

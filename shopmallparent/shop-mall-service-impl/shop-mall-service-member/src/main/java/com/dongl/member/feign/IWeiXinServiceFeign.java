@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @Version: 1.0
  */
 // 通过feign 把微信的服务名注册进去。
-@FeignClient("app-weixin")
+//@FeignClient("app-weixin")
 public interface IWeiXinServiceFeign extends IWeiXinService {
 
     /**

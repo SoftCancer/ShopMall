@@ -31,15 +31,15 @@ public class MemberServiceImpl extends BaseApiService implements IMemberService 
     @Autowired
     private GenerateToken generateToken;
 
-    @Autowired
-    private IWeiXinServiceFeign weiXinServiceFeign;
+//    @Autowired
+//    private IWeiXinServiceFeign weiXinServiceFeign;
 
 
     // SpringCloud 的服务通讯 ：rest，feign
-    @Override
-    public BaseResponse memberToWeiXin() {
-        return weiXinServiceFeign.getApp();
-    }
+//    @Override
+//    public BaseResponse memberToWeiXin() {
+//        return weiXinServiceFeign.getApp();
+//    }
 
 
     @Override

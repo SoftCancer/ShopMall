@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Api(tags = "微信接口")
 public interface IWeiXinService {
 
-    @ApiOperation(value = "获取App 接口")
-    @GetMapping("/getApp")
-    public BaseResponse getApp();
+//    @ApiOperation(value = "获取App 接口")
+//    @GetMapping("/getApp")
+//    public BaseResponse getApp();
 }

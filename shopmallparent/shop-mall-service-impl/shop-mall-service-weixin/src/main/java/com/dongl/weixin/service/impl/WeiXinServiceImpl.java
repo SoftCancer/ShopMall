@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class WeiXinServiceImpl extends BaseApiService implements IWeiXinService {
 
-    @Override
-    public BaseResponse getApp() {
-        AppEntity appEntity = new AppEntity("feign","你的奖品是：iPhone XS Max");
-        return setResultSuccess(appEntity);
-    }
+//    @Override
+//    public BaseResponse getApp() {
+//        AppEntity appEntity = new AppEntity("feign","你的奖品是：iPhone XS Max");
+//        return setResultSuccess(appEntity);
+//    }
 }
