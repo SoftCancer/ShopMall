@@ -20,7 +20,7 @@ public class RegisterController {
      * @Author: YaoGuangXun
      * @Date: 2020/2/7 23:59
      **/
-    @GetMapping("/register.html")
+    @GetMapping("/register")
     public String getRegister(){
         return MB_REGISTER_PAGE;
     }

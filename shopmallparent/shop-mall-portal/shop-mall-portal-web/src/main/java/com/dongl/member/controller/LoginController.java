@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class LoginController {
 
     /* 跳转到登陆页面*/
-    private static final String MB_LOGIN_FTL = "login";
+    private static final String MB_LOGIN_FTL = "member/login";
 
     /**
      * @Description: 跳转到登陆页面
