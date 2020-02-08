@@ -31,7 +31,7 @@
     </div> 
     <div class="house-banner layui-form">
       <a class="banner" href="index.html">
-        <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1581102646695&di=095d4cdc561e6462f2cf225c653371e4&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F8%2F582bce698cf95.jpg" alt="家居商城">
+        <img src="../res/static/img/logo.jpg" alt="家居商城">
       </a>
       <div class="layui-input-inline">
         <input type="text" placeholder="搜索好物" class="layui-input"><i class="layui-icon layui-icon-house-find"></i>
