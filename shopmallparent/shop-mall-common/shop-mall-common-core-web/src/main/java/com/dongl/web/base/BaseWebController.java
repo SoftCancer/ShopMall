@@ -13,7 +13,7 @@ public class BaseWebController {
 	/**
 	 * 500页面
 	 */
-	protected static final String ERROR_500_FTL = "500.ftl";
+	protected static final String MB_ERROR_500_FTL = "error/500.ftl";
 
 	public Boolean isSuccess(BaseResponse<?> baseResp) {
 		if (baseResp == null) {

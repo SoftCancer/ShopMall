@@ -6,14 +6,21 @@ import com.dongl.core.bean.BeanConversionUtils;
 import com.dongl.constants.Constants;
 import com.dongl.core.token.GenerateToken;
 import com.dongl.core.type.TypeCastHelper;
+import com.dongl.core.utils.MD5Util;
 import com.dongl.member.feign.IWeiXinServiceFeign;
+import com.dongl.member.feign.IWeiXinVerificationServiceFeign;
+import com.dongl.member.input.dto.UserInpDTO;
 import com.dongl.member.mapper.UserMapper;
 import com.dongl.member.mapper.entity.UserDO;
 import com.dongl.member.output.dto.UserOutDTO;
 import com.dongl.member.service.IMemberService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Random;
 
 /**
  * @Description: 实现 会员接口，
@@ -31,15 +38,43 @@ public class MemberServiceImpl extends BaseApiService implements IMemberService 
     @Autowired
     private GenerateToken generateToken;
 
-//    @Autowired
-//    private IWeiXinServiceFeign weiXinServiceFeign;
+    @Autowired
+    private IWeiXinVerificationServiceFeign weiXinVerificationServiceFeign;
 
+    @Transactional
+    @Override
+    public BaseResponse registeredUser(@RequestBody UserInpDTO userInpDTO, String registCode) {
 
-    // SpringCloud 的服务通讯 ：rest，feign
-//    @Override
-//    public BaseResponse memberToWeiXin() {
-//        return weiXinServiceFeign.getApp();
-//    }
+        // 1. 判断参数是否为空
+        String passward = userInpDTO.getPassword();
+        if (StringUtils.isBlank(passward)){
+            return setResultError("密码不能为空");
+        }
+        int i = new Random().nextInt();
+        userInpDTO.setUserName("yaom" + i);
+        if (StringUtils.isBlank(userInpDTO.getUserName())){
+            return setResultError("用户名不能为空");
+        }
+        if (StringUtils.isBlank(registCode)){
+            return setResultError("注册码不能为空");
+        }
+
+        // 2. 判断注册码是否正确
+        BaseResponse resultVerification = weiXinVerificationServiceFeign.verificationCode(userInpDTO.getMobile(),registCode);
+        if (!resultVerification.getCode().equals(Constants.HTTP_RES_CODE_200)){
+            return setResultError(resultVerification.getMsg());
+        }
+
+        // 3.密码加密
+        passward = MD5Util.MD5(passward);
+        userInpDTO.setPassword(passward);
+        // 4.保存注册数据
+        UserDO userDO = BeanConversionUtils.dtoToDo(userInpDTO,UserDO.class);
+        Integer result = userMapper.register(userDO);
+
+        return result >0 ? setResultSuccess("账户注册成功!"):setResultError("账户注册失败!");
+
+    }
 
 
     @Override

@@ -10,5 +10,6 @@ import org.springframework.cloud.openfeign.FeignClient;
  * @Version: 1.0
  */
 @FeignClient(name = "app-member",contextId = "example")
+//@FeignClient("app-member")
 public interface IMemberLoginServiceFeign extends IMemberLoginService {
 }

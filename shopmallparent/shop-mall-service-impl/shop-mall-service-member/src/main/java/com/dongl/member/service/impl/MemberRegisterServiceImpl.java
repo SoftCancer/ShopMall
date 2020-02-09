@@ -19,14 +19,14 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Random;
 
 /**
- * @Description: 注册接口
+ * @Description: 注册接口 废弃不再使用 转移到 IMemberService 接口中。
  * 测试需要启动，微信，会员，zuul 三个应用。
  * @author: YaoGuangXun
  * @date: 2020/2/5 22:51
  * @Version: 1.0
  */
 @RestController
-public class MemberRegisterServiceImpl extends BaseApiService implements IMemberRegisterService {
+public class MemberRegisterServiceImpl extends BaseApiService  {
 
     @Autowired
     private UserMapper userMapper;
@@ -35,7 +35,6 @@ public class MemberRegisterServiceImpl extends BaseApiService implements IMember
     private IWeiXinVerificationServiceFeign weiXinVerificationServiceFeign;
 
     @Transactional
-    @Override
     public BaseResponse registeredUser(@RequestBody UserInpDTO userInpDTO, String registCode) {
 
         // 1. 判断参数是否为空

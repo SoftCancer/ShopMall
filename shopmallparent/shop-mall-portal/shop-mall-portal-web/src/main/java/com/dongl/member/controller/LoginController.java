@@ -11,6 +11,7 @@ import com.dongl.web.base.BaseWebController;
 import com.dongl.web.constants.WebConstants;
 import com.dongl.web.utils.CookieUtils;
 import com.dongl.web.utils.RandomValidateCodeUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +22,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import static com.dongl.web.utils.CookieUtils.getCookieValue;
 
 /**
  * @Description:
@@ -83,4 +86,18 @@ public class LoginController extends BaseWebController {
         CookieUtils.setCookie(request, response, WebConstants.LOGIN_TOKEN_COOKIENAME, token);
         return REDIRECT_INDEX;
     }
+
+    @GetMapping("/exit")
+    public String loginOut(HttpServletRequest request) {
+        String token = CookieUtils.getCookieValue(request,WebConstants.LOGIN_TOKEN_COOKIENAME);
+        if (StringUtils.isNotBlank(token)){
+            // 清除Redis和修改登录状态
+           BaseResponse exit = memberLoginServiceFeign.exit(token);
+          if (isSuccess(exit)){
+                return MB_LOGIN_FTL;
+            }
+        }
+        return MB_ERROR_500_FTL;
+    }
+
 }

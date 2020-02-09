@@ -114,11 +114,33 @@ public class MemberLoginServiceImpl extends BaseApiService implements IMemberLog
         } catch (Exception e) {
             try {
                 redisDataSoureceTransaction.rollback(transactionStatus);
-
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
         }
         return setResultError("系统错误！");
+    }
+
+    @Override
+    public BaseResponse<JSONObject> exit(String token) {
+        TransactionStatus transactionStatus = redisDataSoureceTransaction.begin();
+        generateToken.removeToken(token);
+        Integer availability = userMapper.updateAvailabilityByToken(token);
+
+
+            try {
+                if (!toDaoResult(availability)){
+                redisDataSoureceTransaction.rollback(transactionStatus);
+                return setResultError("退出失败！");
+                }
+                redisDataSoureceTransaction.commit(transactionStatus);
+            } catch (Exception e) {
+                try {
+                    redisDataSoureceTransaction.rollback(transactionStatus);
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            }
+        return setResultSuccess("成功退出！");
     }
 }

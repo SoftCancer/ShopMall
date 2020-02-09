@@ -3,8 +3,8 @@ package com.dongl.member.controller;
 import com.dongl.base.BaseResponse;
 import com.dongl.core.bean.BeanConversionUtils;
 import com.dongl.member.controller.registervo.RegisterVo;
-import com.dongl.member.feign.IMemberRegisterServiceFeign;
 import com.dongl.member.input.dto.UserInpDTO;
+import com.dongl.member.service.IMemberService;
 import com.dongl.web.base.BaseWebController;
 import com.dongl.web.utils.RandomValidateCodeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +35,7 @@ public class RegisterController extends BaseWebController {
     private static final String MB_LOGIN_FTL = "member/login";
 
     @Autowired
-    private IMemberRegisterServiceFeign memberRegisterServiceFeign;
+    private IMemberService memberService;
 
     /**
      * 注册方法
@@ -71,7 +71,7 @@ public class RegisterController extends BaseWebController {
         // 3. 调用会员接口注册用户信息到数据库
         UserInpDTO userInpDTO = BeanConversionUtils.doToDto(registerVo,UserInpDTO.class);
         String registCode = registerVo.getRegistCode();
-        BaseResponse register = memberRegisterServiceFeign.registeredUser(userInpDTO,registCode);
+        BaseResponse register = memberService.registeredUser(userInpDTO,registCode);
         if (!isSuccess(register)){
             setErrorMsg(model,register.getMsg());
             return MB_REGISTER_FTL;

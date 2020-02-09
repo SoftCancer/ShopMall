@@ -9,6 +9,6 @@ import org.springframework.cloud.openfeign.FeignClient;
  * @date: 2020/2/8 18:52
  * @Version: 1.0
  */
-@FeignClient("app-member")
+//@FeignClient("app-member")
 public interface IMemberRegisterServiceFeign extends IMemberRegisterService {
 }

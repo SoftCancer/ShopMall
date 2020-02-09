@@ -20,7 +20,7 @@ public interface IMemberRegisterService {
      * @Author: YaoGuangXun
      * @Date: 2020/2/6 1:00
      **/
-    @PostMapping("/register")
-    @ApiOperation(value = "会员用户注册信息接口")
-    BaseResponse registeredUser(@RequestBody UserInpDTO userInpDTO, @RequestParam("registCode") String registCode);
+//    @PostMapping("/register")
+//    @ApiOperation(value = "会员用户注册信息接口")
+//    BaseResponse registeredUser(@RequestBody UserInpDTO userInpDTO, @RequestParam("registCode") String registCode);
 }

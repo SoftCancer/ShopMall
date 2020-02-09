@@ -3,6 +3,7 @@ package com.dongl.member.mapper;
 import com.dongl.member.mapper.entity.UserDO;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.data.repository.query.Param;
 
 /**
@@ -43,4 +44,9 @@ public interface UserMapper {
     @Select("SELECT USER_ID AS USERID ,MOBILE AS MOBILE,EMAIL AS EMAIL,PASSWORD AS PASSWORD, USER_NAME AS USER_NAME ,SEX AS SEX ,AGE AS AGE ,CREATE_TIME AS CREATETIME,IS_AVALIBLE AS ISAVALIBLE,PIC_IMG AS PICIMG,QQ_OPENID AS QQOPENID,WX_OPENID AS WXOPENID"
             + " FROM meite_user WHERE user_Id=#{userId}")
     UserDO findByUserId(@Param("userId") Long userId);
+
+    @Update("    update meite_user_token set is_availability ='1',update_time=now()   where token=#{0}")
+    int updateAvailabilityByToken(@Param("token") String token);
+
+
 }

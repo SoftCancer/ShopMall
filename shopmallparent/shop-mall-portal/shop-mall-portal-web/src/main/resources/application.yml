@@ -18,7 +18,13 @@ spring:
         - classpath:/templates
     application:
         name: app-portal-web
-
+    cloud:
+      loadbalancer:
+        retry:
+          enabled: true
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
 
 ###服务注册到eureka地址
 eureka:
