@@ -38,7 +38,7 @@ public class LoginController extends BaseWebController {
     /**
      * 重定向到首页
      */
-    private static final String REDIRECT_INDEX = "redirect:/index";
+    private static final String REDIRECT_INDEX = "redirect:/";
     /**
      * @Description: 跳转到登陆页面
      * @Author: YaoGuangXun
