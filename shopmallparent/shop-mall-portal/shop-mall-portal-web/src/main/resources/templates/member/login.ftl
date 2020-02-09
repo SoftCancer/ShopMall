@@ -73,9 +73,9 @@
 
 				<div class="layui-input-block getCode">
 					<input type="text" name="graphicCode" required lay-verify="required"
-						placeholder="请输入验证码" class="layui-input"> <img alt=""
-						src="getVerify" onclick="getVerify(this);"
-						style="border: 1px solid #e2e2e2;font-size: 18px;height: 48px;margin-top: -93px;width: 44%;background-color: #e8d6c0;margin-left: 166px;">
+						placeholder="请输入验证码" class="layui-input">
+                    <img alt="" src="getVerify" onclick="getVerify(this);"
+						style="border: 1px solid #e2e2e2;font-size: 18px;height: 48px;margin-top: -93px;width: 44%;background-color: #e8d6c0;margin-left: 166px;"/>
 				</div>
 				<span
 					style="color: red; font-size: 20px; font-weight: bold; font-family: '楷体', '楷体_GB2312';">${error!''}</span>
@@ -114,6 +114,11 @@
 		layui.config({
 			base : '../res/static/js/'
 		}).use('house');
+
+        //获取验证码
+        function getVerify(obj) {
+            obj.src = "getVerify?" + Math.random();
+        }
 	</script>
 
 </body>
