@@ -22,7 +22,7 @@ import org.slf4j.LoggerFactory;
  **/
 public class RandomValidateCodeUtil {
 
-	public static final String RANDOMCODEKEY = "RANDOMVALIDATECODEKEY";// 放到session中的key
+	public static final String RANDOM_CODE_KEY = "random_validate_code_key";// 放到session中的key
 	private String randString = "0123456789";// 随机产生只有数字的字符串 private String
 	// private String randString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";//随机产生只有字母的字符串
 	// private String randString =
@@ -47,10 +47,12 @@ public class RandomValidateCodeUtil {
 	 * 获得颜色
 	 */
 	private Color getRandColor(int fc, int bc) {
-		if (fc > 255)
-			fc = 255;
-		if (bc > 255)
-			bc = 255;
+		if (fc > 255){
+            fc = 255;
+        }
+		if (bc > 255){
+            bc = 255;
+        }
 		int r = fc + random.nextInt(bc - fc - 16);
 		int g = fc + random.nextInt(bc - fc - 14);
 		int b = fc + random.nextInt(bc - fc - 18);
@@ -79,8 +81,8 @@ public class RandomValidateCodeUtil {
 		}
 		logger.info(randomString);
 		// 将生成的随机字符串保存到session中
-		session.removeAttribute(RANDOMCODEKEY);
-		session.setAttribute(RANDOMCODEKEY, randomString);
+		session.removeAttribute(RANDOM_CODE_KEY);
+		session.setAttribute(RANDOM_CODE_KEY, randomString);
 		g.dispose();
 		try {
 			// 将内存中的图片通过流动形式输出到客户端
@@ -122,14 +124,21 @@ public class RandomValidateCodeUtil {
 		return String.valueOf(randString.charAt(num));
 	}
 
+	/**
+	 *  对比验证码是否正确
+	 * @Author: YaoGuangXun
+	 * @Date: 2020/2/8 20:24
+	 **/
 	public static Boolean checkVerify(String verifiCode, HttpSession httpSession) {
 		if (StringUtils.isEmpty(verifiCode)) {
 			return false;
 		}
-		String random = (String) httpSession.getAttribute("RANDOMVALIDATECODEKEY");
+		// 获取Session 中的验证码
+		String random = (String) httpSession.getAttribute(RANDOM_CODE_KEY);
 		if (StringUtils.isEmpty(random)) {
 			return false;
 		}
+		// 判断验证码是否相等
 		if (!random.equals(verifiCode)) {
 			return false;
 		}

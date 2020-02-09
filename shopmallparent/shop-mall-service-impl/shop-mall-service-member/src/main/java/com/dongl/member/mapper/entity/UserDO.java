@@ -32,7 +32,7 @@ public class UserDO {
     /**
      * 用户名称
      */
-    private String user_name;
+    private String userName;
     /**
      * 性别 0 男 1女
      */

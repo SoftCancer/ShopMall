@@ -16,6 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Random;
+
 /**
  * @Description: 注册接口
  * 测试需要启动，微信，会员，zuul 三个应用。
@@ -41,6 +43,8 @@ public class MemberRegisterServiceImpl extends BaseApiService implements IMember
         if (StringUtils.isBlank(passward)){
             return setResultError("密码不能为空");
         }
+        int i = new Random().nextInt();
+        userInpDTO.setUserName("yaom" + i);
         if (StringUtils.isBlank(userInpDTO.getUserName())){
             return setResultError("用户名不能为空");
         }

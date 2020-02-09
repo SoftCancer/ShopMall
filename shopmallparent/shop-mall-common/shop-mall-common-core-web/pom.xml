@@ -12,4 +12,13 @@
     <artifactId>shop-mall-common-core-web</artifactId>
 
 
+    <dependencies>
+        <!--引入 shop-mall-common-core 使用其中的常量-->
+        <dependency>
+            <groupId>com.dongl</groupId>
+            <artifactId>shop-mall-common-core</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+    </dependencies>
 </project>
