@@ -76,7 +76,6 @@ public class RegisterController extends BaseWebController {
             setErrorMsg(model,register.getMsg());
             return MB_REGISTER_FTL;
         }
-
         return MB_LOGIN_FTL;
     }
 
