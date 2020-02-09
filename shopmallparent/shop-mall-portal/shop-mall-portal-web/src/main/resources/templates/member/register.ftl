@@ -70,7 +70,7 @@
 
 				<div class="layui-input-block-weixinQRcode"
 					style="text-align: center;">
-					<img alt="" src="http://static.itmayiedu.com/1513928038043.jpg">
+					<img alt="" src="../res/static/img/weixin.png">
 
 					<div style="text-align: center; font-size: 14px; color: #FF5722;">
 						关注微信公众号,发送手机号码可获得注册码</div>
