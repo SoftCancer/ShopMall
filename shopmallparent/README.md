@@ -65,19 +65,21 @@
 
 ---shop-mall-basics----分布式基础设施
 
------shop-mall-basics-springcloud-eureka—注册中心
+-----shop-mall-basics-springcloud-eureka            —注册中心
 
------shop-mall-basics-apollo-config-server—阿波罗分布式配置中心
+-----shop-mall-basics-apollo-config-server          —阿波罗分布式配置中心
 
------shop-mall-basics-springcloud-zuul—统一请求入口
+-----shop-mall-basics-springcloud-zuul              —统一请求入口
 
------shop-mall-basics-xuxueli-xxljob—分布式任务调度平台
+-----shop-basics-xxl-sso-server                     —单点登录XXL-SSO
 
------shop-mall-basics-codingapi-lcn—分布式事务解决框架
+-----shop-mall-basics-xuxueli-xxljob                —分布式任务调度平台
 
------shop-mall-basics-codingapi-zipKin —分布式调用链系统
+-----shop-mall-basics-codingapi-lcn                 —分布式事务解决框架
 
------shop-mall-basics-codingapi-elk —分布式日志收集 
+-----shop-mall-basics-codingapi-zipKin              —分布式调用链系统
+
+-----shop-mall-basics-codingapi-elk                 —分布式日志收集 
 
 
 ## B. 公共服务接口层
