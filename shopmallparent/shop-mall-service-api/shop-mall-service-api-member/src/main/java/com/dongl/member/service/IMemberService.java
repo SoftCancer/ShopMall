@@ -2,6 +2,7 @@ package com.dongl.member.service;
 
 import com.dongl.base.BaseResponse;
 import com.dongl.member.input.dto.UserInpDTO;
+import com.dongl.member.input.dto.UserLoginInpDTO;
 import com.dongl.member.output.dto.UserOutDTO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -53,4 +54,14 @@ public interface IMemberService {
     @ApiOperation(value = "/getUserInfo")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query",name = "token",dataType = "String",required = true,value = "用户token")})
     BaseResponse<UserOutDTO> getInfo(@RequestParam("token") String token);
+
+
+    /**
+     * SSO认证系统登陆接口
+     *
+     * @param userLoginInpDTO
+     * @return
+     */
+    @PostMapping("/ssoLogin")
+    public BaseResponse<UserOutDTO> ssoLogin(@RequestBody UserLoginInpDTO userLoginInpDTO);
 }

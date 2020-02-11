@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: app-xxl-sso-server
+  freemarker:
+    settings:
+      number_format: 0.##########
+    charset: UTF-8
+    request-context-attribute: request
+    templateLoaderPath: classpath:/templates/
+    suffix: .ftl
+  resources:
+    static-locations: classpath:/static/
+  mvc:
+    static-path-pattern: /static/**
+###服务注册到eureka地址
+eureka:
+  client:
+    service-url:
+           defaultZone: http://localhost:8100/eureka
+server:
+  port: 8080
+  servlet:
+  # 上下文
+    context-path: /xxl-sso-server
+
+xxl:
+  sso:
+    redis:
+      address: redis://192.168.1.107:6379
+      expire:
+        minute: 1440
+
+## 开启 eureka 服务，会员项目 和 本项目，访问：http://127.0.0.1:8080/xxl-sso-server/login ，
