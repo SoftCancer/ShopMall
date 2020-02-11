@@ -61,6 +61,11 @@ public class SsoLoginStore {
         JedisUtil.setObjectValue(redisKey, xxlUser, redisExpireMinute * 60);  // minute to second
     }
 
+    /**
+     * 处理userid，获取Redis的 key值。
+     * @Author: YaoGuangXun
+     * @Date: 2020/2/11 17:43
+     **/
     private static String redisKey(String sessionId){
         return Conf.SSO_SESSIONID.concat("#").concat(sessionId);
     }

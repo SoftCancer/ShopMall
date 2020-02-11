@@ -11,6 +11,7 @@ import com.dongl.web.base.BaseWebController;
 import com.dongl.web.constants.WebConstants;
 import com.dongl.web.utils.CookieUtils;
 import com.dongl.web.utils.RandomValidateCodeUtil;
+import core.conf.Conf;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -89,11 +90,22 @@ public class LoginController extends BaseWebController {
 
     @GetMapping("/exit")
     public String loginOut(HttpServletRequest request) {
+
         String token = CookieUtils.getCookieValue(request,WebConstants.LOGIN_TOKEN_COOKIENAME);
         if (StringUtils.isNotBlank(token)){
             // 清除Redis和修改登录状态
            BaseResponse exit = memberLoginServiceFeign.exit(token);
           if (isSuccess(exit)){
+                return MB_LOGIN_FTL;
+            }
+        }
+
+        String xxl_sso_sessionid = Conf.SSO_SESSIONID;
+        String sessionId = CookieUtils.getCookieValue(request,xxl_sso_sessionid);
+        if (!"".equals(sessionId)&& null != sessionId) {
+            String redisKey = CookieUtils.dealRedisKeyByCookie(xxl_sso_sessionid, sessionId);
+            BaseResponse exit = memberLoginServiceFeign.exit(redisKey);
+            if (isSuccess(exit)){
                 return MB_LOGIN_FTL;
             }
         }

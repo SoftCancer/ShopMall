@@ -220,4 +220,35 @@ public final class CookieUtils {
 		return domainName;
 	}
 
+	/**
+	 *  主要用于 单点登录时，获取Redis的key 值。
+	 * @Author: YaoGuangXun
+	 * @Date: 2020/2/11 17:57
+	 **/
+	public static String dealRedisKeyByCookie(String key, String value){
+        // key 格式： xxl_sso_sessionid#27
+        String userId =  parseStoreKey(value);
+        String redisKey = key.concat("#").concat(userId);
+        return redisKey;
+    }
+
+    /**
+     * parse storeKey from sessionId
+     *
+     * @param sessionId
+     * @return
+     */
+    public static String parseStoreKey(String sessionId) {
+        if (sessionId!=null && sessionId.indexOf("_")>-1) {
+            String[] sessionIdArr = sessionId.split("_");
+            if (sessionIdArr.length==2
+                    && sessionIdArr[0]!=null
+                    && sessionIdArr[0].trim().length()>0) {
+                String userId = sessionIdArr[0].trim();
+                return userId;
+            }
+        }
+        return null;
+    }
+
 }

@@ -14,6 +14,7 @@ public class XxlSsoUser implements Serializable {
     // field
     private String userid;
     private String username;
+    private String mobile;
     private Map<String, String> plugininfo;
 
     private String version;
@@ -36,6 +37,14 @@ public class XxlSsoUser implements Serializable {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
     public Map<String, String> getPlugininfo() {

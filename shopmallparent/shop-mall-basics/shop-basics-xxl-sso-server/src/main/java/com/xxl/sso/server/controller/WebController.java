@@ -130,6 +130,7 @@ public class WebController extends BaseWebController {
         XxlSsoUser xxlUser = new XxlSsoUser();
         xxlUser.setUserid(String.valueOf(user.getUserId()));
         xxlUser.setUsername(user.getUserName());
+        xxlUser.setMobile(user.getMobile());
         xxlUser.setVersion(UUID.randomUUID().toString().replaceAll("-", ""));
         xxlUser.setExpireMinute(SsoLoginStore.getRedisExpireMinute());
         xxlUser.setExpireFreshTime(System.currentTimeMillis());
@@ -138,7 +139,7 @@ public class WebController extends BaseWebController {
         // 2、make session id
         String sessionId = SsoSessionIdHelper.makeSessionId(xxlUser);
 
-        // 3、login, store storeKey + cookie sessionId
+        // 3、login, store storeKey + cookie sessionId 存入到Redis中。
         SsoWebLoginHelper.login(response, sessionId, xxlUser, ifRem);
 
         // 4、return, redirect sessionId

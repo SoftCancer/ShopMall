@@ -32,12 +32,13 @@ public class SsoWebLoginHelper {
                              String sessionId,
                              XxlSsoUser xxlUser,
                              boolean ifRemember) {
-
+        // 处理 sessionId通过截取获取userId。
         String storeKey = SsoSessionIdHelper.parseStoreKey(sessionId);
         if (storeKey == null) {
             throw new RuntimeException("parseStoreKey Fail, sessionId:" + sessionId);
         }
 
+        // 把用户登录信息存入到Redis中。
         SsoLoginStore.put(storeKey, xxlUser);
         CookieUtil.set(response, Conf.SSO_SESSIONID, sessionId, ifRemember);
     }
