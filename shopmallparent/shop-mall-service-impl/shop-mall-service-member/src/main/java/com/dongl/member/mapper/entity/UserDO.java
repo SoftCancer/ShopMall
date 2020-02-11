@@ -16,7 +16,7 @@ public class UserDO {
     /**
      * userid
      */
-    private Long userid;
+    private Long userId;
     /**
      * 手机号码
      */

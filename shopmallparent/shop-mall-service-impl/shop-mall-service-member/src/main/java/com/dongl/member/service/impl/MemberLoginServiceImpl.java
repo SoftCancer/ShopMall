@@ -77,7 +77,7 @@ public class MemberLoginServiceImpl extends BaseApiService implements IMemberLog
         TransactionStatus transactionStatus = null;
         try {
             // 3.查询之前是否有过登陆
-            Long userId = userDo.getUserid();
+            Long userId = userDo.getUserId();
             UserTokenDo userTokenDo = userTokenMapper.selectByUserIdAndLoginType(userId, loginType);
             // 开启事务
             transactionStatus = redisDataSoureceTransaction.begin();
