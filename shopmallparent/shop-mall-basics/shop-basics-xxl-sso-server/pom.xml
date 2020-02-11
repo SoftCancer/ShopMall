@@ -26,7 +26,7 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
-        <!-- 引入会员服务中的SSO认证  -->
+        <!-- 引入会员服务中的 SSO认证接口  -->
         <dependency>
             <groupId>com.dongl</groupId>
             <artifactId>shop-mall-service-api-member</artifactId>

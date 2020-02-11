@@ -1,5 +1,4 @@
 
-
 server:
   port: 8081
 
@@ -32,16 +31,17 @@ eureka:
     service-url:
            defaultZone: http://localhost:8100/eureka
 
-
-#xxl-sso:
-#  excluded:
-#    paths:
-#xxl:
-#  sso:
+# 添加 XXL-SSO 配置
+xxl-sso:
+  excluded:
+    paths:
+xxl:
+  sso:
 #    server: http://xxlssoserver.com:8080/xxl-sso-server
-#    logout:
-#      path: /logout
-#    redis:
-#      address: redis://127.0.0.1:6379
+    server: http://127.0.0.1:8080/xxl-sso-server
+    logout:
+      path: /logout
+    redis:
+      address: redis://192.168.1.107:6379
 
 

@@ -144,7 +144,9 @@ public class WebController extends BaseWebController {
         // 4、return, redirect sessionId
         String redirectUrl = request.getParameter(Conf.REDIRECT_URL);
         if (redirectUrl!=null && redirectUrl.trim().length()>0) {
+            // 拼接系统地址
             String redirectUrlFinal = redirectUrl + "?" + Conf.SSO_SESSIONID + "=" + sessionId;
+            // 登录成功重定向到系统
             return "redirect:" + redirectUrlFinal;
         } else {
             return "redirect:/";

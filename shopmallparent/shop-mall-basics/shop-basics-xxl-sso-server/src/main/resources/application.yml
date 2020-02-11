@@ -29,5 +29,7 @@ xxl:
       address: redis://192.168.1.107:6379
       expire:
         minute: 1440
-
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
 ## 开启 eureka 服务，会员项目 和 本项目，访问：http://127.0.0.1:8080/xxl-sso-server/login ，

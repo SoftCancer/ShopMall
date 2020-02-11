@@ -28,7 +28,12 @@
             <artifactId>shop-mall-service-api-member</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-
+        <!-- 引入会员服务中的SSO认证  -->
+        <dependency>
+            <groupId>com.dongl</groupId>
+            <artifactId>shop-basics-xxl-sso-core</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 </project>
