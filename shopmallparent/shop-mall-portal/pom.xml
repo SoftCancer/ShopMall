@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>shop-mall-portal-web</module>
+        <module>shop-mall-portal-pay</module>
     </modules>
 
     <dependencies>
@@ -20,6 +21,27 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-freemarker -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-freemarker</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.dongl</groupId>
+            <artifactId>shop-mall-common-core-web</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.dongl</groupId>
+            <artifactId>shop-mall-service-api-member</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <!-- 引入会员服务中的SSO认证  -->
+        <dependency>
+            <groupId>com.dongl</groupId>
+            <artifactId>shop-basics-xxl-sso-core</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

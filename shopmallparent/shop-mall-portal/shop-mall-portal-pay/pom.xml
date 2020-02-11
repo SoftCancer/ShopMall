@@ -9,11 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>shop-mall-portal-web</artifactId>
+    <artifactId>shop-mall-portal-pay</artifactId>
 
-
-    <dependencies>
-
-    </dependencies>
 
 </project>
