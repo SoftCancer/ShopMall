@@ -82,7 +82,7 @@ public class JedisUtil {
                             String[] addressArr = address.split(",");
                             for (int i = 0; i < addressArr.length; i++) {
                                 JedisShardInfo jedisShardInfo = new JedisShardInfo(addressArr[i]);
-                                // 项目的配置文件中没有定义Redis的密码，因此需要在此处进行添加。
+                                // 项目的配置文件中没有定义Redis的密码，因此需要在此处进行添加密码。
                                 jedisShardInfo.setPassword("123456");
                                 jedisShardInfos.add(jedisShardInfo);
                             }

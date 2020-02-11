@@ -18,8 +18,8 @@
     <modules>
         <module>shop-basics-eureka</module>
         <module>shop-basics-zuul</module>
-        <module>shop-basics-xxl-sso-server</module>
         <module>shop-basics-xxl-sso-core</module>
+        <module>shop-basics-xxl-sso-server</module>
     </modules>
 
     <dependencies>

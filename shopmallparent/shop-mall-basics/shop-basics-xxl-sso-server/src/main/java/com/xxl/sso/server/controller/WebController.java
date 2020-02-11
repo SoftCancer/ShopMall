@@ -102,7 +102,7 @@ public class WebController extends BaseWebController {
 
         boolean ifRem = (ifRemember!=null&&"on".equals(ifRemember))?true:false;
 
-        //
+        /*  接入自己项目的登录认证接口 start */
         UserLoginInpDTO userLoginInpDTO = new UserLoginInpDTO();
         userLoginInpDTO.setMobile(username);
         userLoginInpDTO.setPassword(password);
@@ -124,6 +124,7 @@ public class WebController extends BaseWebController {
             redirectAttributes.addAttribute(Conf.REDIRECT_URL, request.getParameter(Conf.REDIRECT_URL));
             return "redirect:/login";
         }
+        /*  接入自己项目的登录认证接口 end  */
 
         // 1、make xxl-sso user
         XxlSsoUser xxlUser = new XxlSsoUser();
