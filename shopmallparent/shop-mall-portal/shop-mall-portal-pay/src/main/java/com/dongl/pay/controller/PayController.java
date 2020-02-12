@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
- * @Description:
+ * @Description: 支付页面
  * @author: YaoGuangXun
  * @date: 2020/2/11 21:56
  * @Version: 1.0
