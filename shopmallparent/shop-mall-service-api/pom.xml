@@ -24,6 +24,7 @@
     <modules>
         <module>shop-mall-service-api-weixin</module>
         <module>shop-mall-service-api-member</module>
+        <module>shop-mall-service-api-good</module>
     </modules>
 
     <dependencies>
