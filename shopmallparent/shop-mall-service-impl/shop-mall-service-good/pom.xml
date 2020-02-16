@@ -22,7 +22,12 @@
             <artifactId>shop-mall-service-api-good</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-
+        <!-- elk+kafka-->
+        <dependency>
+            <groupId>com.dongl</groupId>
+            <artifactId>shop-basics-elk-kafka</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 
         <!-- springboot 整合ES -->
         <dependency>
@@ -42,13 +47,8 @@
             <artifactId>orika-core</artifactId>
             <version>1.5.2</version>
         </dependency>
-        <!-- elk+kafka
-        <dependency>
-            <groupId>com.mayikt</groupId>
-            <artifactId>meite-shop-basics-elk-kafka</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        -->
+
+
     </dependencies>
 
 </project>

@@ -20,6 +20,7 @@
         <module>shop-basics-zuul</module>
         <module>shop-basics-xxl-sso-core</module>
         <module>shop-basics-xxl-sso-server</module>
+        <module>shop-basics-elk-kafka</module>
     </modules>
 
     <dependencies>

@@ -33,9 +33,9 @@ public class ProductSearchServiceImpl extends BaseApiService<List<ProductDto>> i
 
     @Override
     public BaseResponse<List<ProductDto>> search(String name) {
-        if (StringUtils.isBlank(name)){
-            return setResultError("名称不能为空！");
-        }
+//        if (StringUtils.isBlank(name)){
+//            return setResultError("名称不能为空！");
+//        }
         BoolQueryBuilder builder = QueryBuilders.boolQuery();
         // 模拟查询
         builder.must(QueryBuilders.fuzzyQuery("name", name));
