@@ -34,3 +34,5 @@ spring:
      cluster-nodes: 192.168.1.107:9300
   kafka:
     bootstrap-servers: 192.168.1.120:9092
+
+## 该模块需要启动elk ,Zookeeper ，kafka服务器，同时需要启动 eureka服务。
