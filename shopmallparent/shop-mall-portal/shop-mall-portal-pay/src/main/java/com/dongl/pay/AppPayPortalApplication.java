@@ -19,8 +19,8 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication(exclude = { DataSourceAutoConfiguration.class,
         DataSourceTransactionManagerAutoConfiguration.class, HibernateJpaAutoConfiguration.class })  // 作用：去除引入其他模块的jar时，附带的数据库引用。
 
-public class AppPayApplication {
+public class AppPayPortalApplication {
     public static void main(String[] args) {
-        SpringApplication.run(AppPayApplication.class,args);
+        SpringApplication.run(AppPayPortalApplication.class,args);
     }
 }

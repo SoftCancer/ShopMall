@@ -54,4 +54,14 @@ public class BaseApiService<T> {
     public Boolean toDaoResult(int result) {
         return result > 0 ? true : false;
     }
+
+    public Boolean isSuccess(BaseResponse<?> baseResp) {
+        if (baseResp == null) {
+            return false;
+        }
+        if (!baseResp.getCode().equals(Constants.HTTP_RES_CODE_200)) {
+            return false;
+        }
+        return true;
+    }
 }

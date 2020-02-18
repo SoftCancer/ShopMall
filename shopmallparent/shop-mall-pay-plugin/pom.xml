@@ -9,22 +9,12 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>shop-mall-dto</artifactId>
+    <artifactId>shop-mall-pay-plugin</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>shop-mall-member-dto</module>
-        <module>shop-mall-weixin-dto</module>
-        <module>shop-mall-product-dto</module>
-        <module>shop-mall-pay-dto</module>
+        <module>shop-mall-alipay</module>
+        <module>shop-mall-unionpay</module>
     </modules>
 
-    <dependencies>
-        <!--引入Swagger api 依赖-->
-        <dependency>
-            <groupId>com.spring4all</groupId>
-            <artifactId>swagger-spring-boot-starter</artifactId>
-            <version>1.9.0.RELEASE</version>
-        </dependency>
-    </dependencies>
 
 </project>

@@ -25,6 +25,7 @@
         <module>shop-mall-common</module>
         <module>shop-mall-dto</module>
         <module>shop-mall-portal</module>
+        <module>shop-mall-pay-plugin</module>
     </modules>
 
     <properties>

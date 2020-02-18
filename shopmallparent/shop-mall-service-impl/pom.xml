@@ -15,6 +15,7 @@
         <module>shop-mall-service-weixin</module>
         <module>shop-mall-service-member</module>
         <module>shop-mall-service-good</module>
+        <module>shop-mall-service-pay</module>
     </modules>
 
     <dependencies>
