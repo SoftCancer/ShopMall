@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @Description: 根据Token 查询预支付信息，
+ * @Description: 第二步：根据Token 查询预支付信息，
  * @author: YaoGuangXun
  * @date: 2020/2/18 12:23
  * @Version: 1.0

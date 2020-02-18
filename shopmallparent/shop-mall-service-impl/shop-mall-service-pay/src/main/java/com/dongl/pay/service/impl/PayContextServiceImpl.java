@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @Description: 聚合支付实现多渠道调用
+ * @Description: 第三步 ：聚合支付实现 银联支付渠道实现支付
  * @author: YaoGuangXun
  * @date: 2020/2/18 13:53
  * @Version: 1.0
@@ -44,6 +44,7 @@ public class PayContextServiceImpl extends BaseApiService implements IPayContext
         PayMentTransacDTO payMentTransacDTO = tokenByPayMentTransac.getData();
         // 3.执行具体的支付渠道的算法获取html表单数据 策略设计模式 使用java反射机制 执行具体方法
         String classAddres = pymentChannel.getClassAddres();
+
         IPayStrategy payStrategy = StrategyFactory.getPayStrategy(classAddres);
         String payHtml = payStrategy.polymerizationPay(pymentChannel, payMentTransacDTO);
         // 4.直接返回html

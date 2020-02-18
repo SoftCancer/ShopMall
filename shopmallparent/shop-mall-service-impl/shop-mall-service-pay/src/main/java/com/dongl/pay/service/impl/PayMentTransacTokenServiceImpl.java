@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @Description: 存储预支付记录，同时生成Token，并返回token，
+ * @Description: 第一步 ：存储预支付记录，同时生成Token，并返回token，
  * 用于在 PayMentTransacTokenServiceImpl 中查询预支付信息
  * @author: YaoGuangXun
  * @date: 2020/2/18 12:31
@@ -32,6 +32,9 @@ public class PayMentTransacTokenServiceImpl extends BaseApiService implements IP
     private GenerateToken generateToken;
     @Override
     public BaseResponse<JSONObject> cratePayToken(PayCratePayTokenDto payCratePayTokenDto) {
+//        payCratePayTokenDto.setUserId(1234L);
+//        payCratePayTokenDto.setOrderId("300077d11");
+//        payCratePayTokenDto.setPayAmount(1000L);
         String orderId = payCratePayTokenDto.getOrderId();
         if (StringUtils.isEmpty(orderId)) {
             return setResultError("订单号码不能为空!");
@@ -44,7 +47,7 @@ public class PayMentTransacTokenServiceImpl extends BaseApiService implements IP
         if (userId == null) {
             return setResultError("userId不能为空!");
         }
-        log.info(">>>>>orderDes:{}", payCratePayTokenDto.getOrderDes());
+//        log.info(">>>>>orderDes:{}", payCratePayTokenDto.getOrderDes());
         PaymentTransactionEntity paymentTransactionEntity = new PaymentTransactionEntity();
         paymentTransactionEntity.setUserId(userId);
         paymentTransactionEntity.setPayAmount(payAmount);

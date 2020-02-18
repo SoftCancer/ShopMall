@@ -24,7 +24,7 @@ public class PayCratePayTokenDto {
 	private Long userId;
 	/**
 	 * 订单描述
-	 */
 	@NotNull(message = "订单描述")
 	private String orderDes;
+     */
 }

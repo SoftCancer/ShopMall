@@ -12,7 +12,7 @@ import org.apache.ibatis.annotations.Update;
 
 public interface PaymentTransactionMapper {
 	@Options(useGeneratedKeys = true, keyProperty = "id")
-	@Insert("INSERT INTO `payment_transaction` VALUES (null, #{payAmount}, '0', #{userId}, #{orderId},#{revision}, #{partyPayId}, #{paymentId},#{commodityName},#{paymentChannel} ,#{createdBy},now(), #{updatedBy}, now();")
+	@Insert("INSERT INTO `payment_transaction` VALUES (null, #{payAmount}, '0', #{userId}, #{orderId},#{revision}, #{partyPayId}, #{paymentId},#{commodityName},#{paymentChannel} ,#{createdBy},now(), #{updatedBy}, now());")
 	public int insertPaymentTransaction(PaymentTransactionEntity paymentTransactionEntity);
 
 	@Select("SELECT ID AS ID ,pay_Amount AS payAmount,payment_Status AS paymentStatus,user_ID AS userId, order_Id AS orderId , created_Time as createdTime ,partypay_Id as partyPayId , payment_Id as paymentId ,COMMODITYNAME as commodityName ,payment_channel as paymentChannel FROM payment_transaction WHERE ID=#{id};")
