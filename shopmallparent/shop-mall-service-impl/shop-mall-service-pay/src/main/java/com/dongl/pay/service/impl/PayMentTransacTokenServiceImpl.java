@@ -15,8 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @Description: 第一步 ：存储预支付记录，同时生成Token，并返回token，
- * 用于在 PayMentTransacTokenServiceImpl 中查询预支付信息
+ * @Description: 第一步 ：用户点击购买时，存储预支付记录，同时生成Token，
+ * 并返回token 并跳转到多渠道页面，选择某个渠道进行支付，
+ * 用于在 PayMentTransacInfoServiceImpl 中查询预支付信息
  * @author: YaoGuangXun
  * @date: 2020/2/18 12:31
  * @Version: 1.0

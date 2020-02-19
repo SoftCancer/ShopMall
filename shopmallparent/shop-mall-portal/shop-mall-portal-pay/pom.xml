@@ -10,6 +10,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>shop-mall-portal-pay</artifactId>
-
+<dependencies>
+    <dependency>
+        <artifactId>shop-mall-service-api-pay</artifactId>
+        <groupId>com.dongl</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+</dependencies>
 
 </project>
