@@ -48,13 +48,13 @@ public class RabbitmqConfig {
 		return new DirectExchange(INTEGRAL_EXCHANGE_NAME);
 	}
 
-	// 3.积分队列与交换机绑定
+	// 3.积分队列与交换机绑定，消息都会被转发到 RoutingKey (integralRoutingKey) 中指定的Queue。
 	@Bean
     Binding bindingExchangeintegralDicQueue() {
 		return BindingBuilder.bind(directIntegralDicQueue()).to(directintegralExchange()).with("integralRoutingKey");
 	}
 
-	// 3.补偿队列与交换机绑定
+	// 3.补偿队列与交换机绑定，消息都会被转发到 RoutingKey (integralRoutingKey)中指定的Queue。
 	@Bean
 	Binding bindingExchangeCreateintegral() {
 		return BindingBuilder.bind(directCreateintegralQueue()).to(directintegralExchange()).with("integralRoutingKey");
