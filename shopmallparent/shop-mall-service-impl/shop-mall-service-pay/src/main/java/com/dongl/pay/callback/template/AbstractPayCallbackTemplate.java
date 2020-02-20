@@ -5,6 +5,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.dongl.pay.callback.template.factory.TemplateFactory;
 import com.dongl.pay.constant.PayConstant;
 import com.dongl.pay.mapper.PaymentTransactionLogMapper;
 import com.dongl.pay.mapper.entity.PaymentTransactionLogEntity;
@@ -14,9 +15,6 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sun.swing.internal.plaf.synth.resources.synth;
-
-import lombok.Synchronized;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -28,10 +26,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Component
 public abstract class AbstractPayCallbackTemplate {
+
 	@Autowired
 	private PaymentTransactionLogMapper paymentTransactionLogMapper;
-	@Autowired
-	private ThreadPoolTaskExecutor threadPoolTaskExecutor;
+
+//    @Autowired
+//	private ThreadPoolTaskExecutor threadPoolTaskExecutor;
 
 	/**
 	 * 获取所有请求的参数，封装成Map集合 并且验证是否被篡改
@@ -71,7 +71,7 @@ public abstract class AbstractPayCallbackTemplate {
 			return failResult();
 		}
 		log.info(">>>>>asyncCallBack service 01");
-
+        ThreadPoolTaskExecutor threadPoolTaskExecutor = TemplateFactory.getThreadPoolTaskExecutor("taskExecutor");
 		// 3.采用异步形式写入日志到数据库中
 		threadPoolTaskExecutor.execute(new PayLogThread(paymentId, verifySignature));
 		log.info(">>>>>asyncCallBack service 04");
