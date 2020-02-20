@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>shopmallparent</artifactId>
+        <groupId>com.dongl</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>shop-mall-job</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>shop-mall-pay-job</module>
+        <module>shop-mall-job-admin</module>
+        <module>shop-mall-job-core</module>
+    </modules>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+
+        <mybatis-spring-boot-starter.version>2.1.1</mybatis-spring-boot-starter.version>
+        <mysql-connector-java.version>8.0.18</mysql-connector-java.version>
+
+        <xxl-rpc.version>1.5.0</xxl-rpc.version>
+        <slf4j-api.version>1.7.30</slf4j-api.version>
+        <junit.version>4.13</junit.version>
+        <groovy.version>2.5.9</groovy.version>
+    </properties>
+<dependencies>
+</dependencies>
+
+</project>
