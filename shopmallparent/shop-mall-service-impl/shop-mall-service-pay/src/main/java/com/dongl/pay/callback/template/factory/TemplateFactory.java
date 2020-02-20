@@ -3,6 +3,7 @@ package com.dongl.pay.callback.template.factory;
 
 import com.dongl.core.utils.SpringContextUtil;
 import com.dongl.pay.callback.template.AbstractPayCallbackTemplate;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 /**
  * 获取具体实现的模版工厂方案
@@ -20,6 +21,10 @@ public class TemplateFactory {
 
 	public static AbstractPayCallbackTemplate getPayCallbackTemplate(String beanId) {
 		return (AbstractPayCallbackTemplate) SpringContextUtil.getBean(beanId);
+	}
+
+	public static ThreadPoolTaskExecutor getThreadPoolTaskExecutor(String beanId) {
+		return (ThreadPoolTaskExecutor) SpringContextUtil.getBean(beanId);
 	}
 
 }

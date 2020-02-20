@@ -1,15 +1,18 @@
 package com.dongl.pay.callback.template.unionpay;
 
+import com.alibaba.fastjson.JSONObject;
 import com.dongl.pay.callback.template.AbstractPayCallbackTemplate;
 import com.dongl.pay.constant.PayConstant;
 import com.dongl.pay.mapper.PaymentTransactionMapper;
 import com.dongl.pay.mapper.entity.PaymentTransactionEntity;
+import com.dongl.pay.mq.producer.IntegralProducer;
 import com.dongl.unionpay.acp.sdk.AcpService;
 import com.dongl.unionpay.acp.sdk.LogUtil;
 import com.dongl.unionpay.acp.sdk.SDKConstants;
 import com.dongl.unionpay.acp.sdk.UnionPayBase;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,7 +36,7 @@ public class UnionPayCallbackTemplate extends AbstractPayCallbackTemplate {
 	@Autowired
 	private PaymentTransactionMapper paymentTransactionMapper;
 	@Autowired
-//	private IntegralProducer integralProducer;
+	private IntegralProducer integralProducer;
 
 	@Override
 	public Map<String, String> verifySignature(HttpServletRequest req, HttpServletResponse resp) {
@@ -84,7 +87,7 @@ public class UnionPayCallbackTemplate extends AbstractPayCallbackTemplate {
 		// 2.将状态改为已经支付成功
 		paymentTransactionMapper.updatePaymentStatus(PayConstant.PAY_STATUS_SUCCESS + "", orderId, "yinlian_pay");
 		// 3.调用积分服务接口增加积分(处理幂等性问题) MQ
-//		addMQIntegral(paymentTransaction); // 使用MQ
+		addMQIntegral(paymentTransaction); // 使用MQ
 		int i = 1 / 0; // 支付状态还是为待支付状态但是 积分缺增加
 		return successResult();
 	}
@@ -92,14 +95,14 @@ public class UnionPayCallbackTemplate extends AbstractPayCallbackTemplate {
 	/**
 	 * 基于MQ增加积分
 	 */
-//	@Async
-//	private void addMQIntegral(PaymentTransactionEntity paymentTransaction) {
-//		JSONObject jsonObject = new JSONObject();
-//		jsonObject.put("paymentId", paymentTransaction.getPaymentId());
-//		jsonObject.put("userId", paymentTransaction.getUserId());
-//		jsonObject.put("integral", 100);
-//		integralProducer.send(jsonObject);
-//	}
+	@Async
+	private void addMQIntegral(PaymentTransactionEntity paymentTransaction) {
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("paymentId", paymentTransaction.getPaymentId());
+		jsonObject.put("userId", paymentTransaction.getUserId());
+		jsonObject.put("integral", 100);
+		integralProducer.send(jsonObject);
+	}
 
 	@Override
 	public String failResult() {
