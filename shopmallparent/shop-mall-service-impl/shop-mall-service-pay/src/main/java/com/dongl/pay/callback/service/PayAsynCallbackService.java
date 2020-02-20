@@ -15,7 +15,7 @@ public class PayAsynCallbackService {
 
 	/**
 	 * 银联异步回调接口执行代码
-	 * 
+	 *  改地址在 payment_chanal 表中配置
 	 * @param req
 	 * @param resp
 	 * @return
