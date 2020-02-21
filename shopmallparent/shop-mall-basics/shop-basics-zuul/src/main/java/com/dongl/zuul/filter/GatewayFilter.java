@@ -2,6 +2,8 @@ package com.dongl.zuul.filter;
 
 import com.dongl.sign.SignUtil;
 import com.dongl.web.utils.NetworkUtils;
+import com.dongl.zuul.builder.GatewayDirectorBuild;
+import com.dongl.zuul.builder.impl.VerificationBuild;
 import com.dongl.zuul.mapper.BlacklistMapper;
 import com.dongl.zuul.mapper.entity.MeiteBlacklist;
 import com.netflix.zuul.ZuulFilter;
@@ -25,25 +27,19 @@ import java.util.Map;
 public class GatewayFilter extends ZuulFilter {
 
     @Autowired
-    private BlacklistMapper blacklistMapper;
-
+    private GatewayDirectorBuild gatewayDirectorBuild;
     @Override
     public Object run() throws ZuulException {
+        // 1.获取请求对象
         RequestContext requestContext = RequestContext.getCurrentContext();
         HttpServletRequest request = requestContext.getRequest();
+        // 2.获取真实ip
         String ipAddress = NetworkUtils.getIpAddr(request);
-        // 根据ip地址查询数据库中是否设置了黑名单，可以把黑名单存入Redis或Apollo中
-        MeiteBlacklist meiteBlacklist = blacklistMapper.findBlacklist(ipAddress);
-        // 不等于空说明被拉入了黑名单，进入判断返回。
-        if (meiteBlacklist != null) {
-            log.info(ipAddress + "Access restricted ");
-            resultInsufficientAuthority(requestContext, "Access restricted");
-        }
+        // 3. 通过建造者模式整合 ip拦截，参数验签，xss等
+        gatewayDirectorBuild.director(requestContext,ipAddress,request);
 
-        Map map = SignUtil.toVerifyMap(request.getParameterMap(), false);
-        if (!SignUtil.verify(map)){
-            log.info(map + "sign file ");
-        }
+
+
 //        HttpServletResponse response = requestContext.getResponse();
         return null;
     }
@@ -78,20 +74,5 @@ public class GatewayFilter extends ZuulFilter {
         return "pre";
     }
 
-    // ip地址存在一个问题
-    private void resultInsufficientAuthority(RequestContext ctx, String errorMsg) {
-        baseResultErrorBase(ctx, 401, errorMsg);
-    }
-
-    private void resultError(RequestContext ctx, String errorMsg) {
-        baseResultErrorBase(ctx, 500, errorMsg);
-    }
-
-    private void baseResultErrorBase(RequestContext ctx, int code, String errorMsg) {
-        ctx.setResponseStatusCode(500);
-        // 网关响应为false 不会转发服务
-        ctx.setSendZuulResponse(false);
-        ctx.setResponseBody(errorMsg);
-    }
 
 }
