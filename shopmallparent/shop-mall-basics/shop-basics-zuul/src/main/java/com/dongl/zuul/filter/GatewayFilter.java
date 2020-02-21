@@ -10,11 +10,12 @@ import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @Description: 通过网关实现 IP黑名单拦截，（防止恶意请求攻击），ip限流。
@@ -37,9 +38,9 @@ public class GatewayFilter extends ZuulFilter {
         String ipAddress = NetworkUtils.getIpAddr(request);
         // 3. 通过建造者模式整合 ip拦截，参数验签，xss等
         gatewayDirectorBuild.director(requestContext,ipAddress,request);
-
-
-
+        // 4. 过滤请求参数、防止XSS攻击
+        Map<String, List<String>> filterParameters = filterParameters(request,requestContext);
+        requestContext.setRequestQueryParams(filterParameters);
 //        HttpServletResponse response = requestContext.getResponse();
         return null;
     }
@@ -72,6 +73,26 @@ public class GatewayFilter extends ZuulFilter {
     @Override
     public String filterType() {
         return "pre";
+    }
+
+    /**
+     * 过滤参数
+     */
+    private Map<String, List<String>> filterParameters(HttpServletRequest request, RequestContext ctx) {
+        Map<String, List<String>> requestQueryParams = ctx.getRequestQueryParams();
+        if (requestQueryParams == null) {
+            requestQueryParams = new HashMap<>();
+        }
+        Enumeration em = request.getParameterNames();
+        while (em.hasMoreElements()) {
+            String name = (String) em.nextElement();
+            String value = request.getParameter(name);
+            ArrayList<String> arrayList = new ArrayList<>();
+            // 将参数转化为html参数 防止xss攻击 < 转为&lt;
+            arrayList.add(StringEscapeUtils.escapeHtml(value));
+            requestQueryParams.put(name, arrayList);
+        }
+        return requestQueryParams;
     }
 
 
