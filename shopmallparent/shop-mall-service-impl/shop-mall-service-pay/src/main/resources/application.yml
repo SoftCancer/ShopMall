@@ -12,7 +12,7 @@ eureka:
   
 spring:
   application:
-    name:  app-pay
+    name:  app-dongl-pay
 #  zipkin:
 #      base-url: http://127.0.0.1:9411/
 #      ###全部采集
