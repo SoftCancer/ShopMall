@@ -12,7 +12,7 @@ eureka:
 spring:
   application:
   ###服务名称(服务注册到eureka名称)
-    name:  app-mayikt-auth
+    name:  app-dongl-auth
 #  zipkin:
 #      base-url: http://127.0.0.1:9411/
 #      ###全部采集

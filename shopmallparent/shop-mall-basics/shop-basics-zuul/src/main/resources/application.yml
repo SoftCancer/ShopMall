@@ -46,7 +46,7 @@ zuul:
       path: /api-pay/**
       serviceId: app-dongl-pay
     api-d:
-        ### 以 /api-pay/访问转发到订单服务
+        ### 以 /public/api-auth/  表示第三方访问支付接口，不附带accessToken，则第三方无法访问
       path: /public/api-pay/**
       serviceId: app-dongl-pay
 

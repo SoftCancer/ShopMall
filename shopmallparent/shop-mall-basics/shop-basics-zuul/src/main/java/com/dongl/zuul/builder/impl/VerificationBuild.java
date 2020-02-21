@@ -1,16 +1,19 @@
 package com.dongl.zuul.builder.impl;
 
+import com.dongl.base.BaseResponse;
+import com.dongl.constants.Constants;
 import com.dongl.sign.SignUtil;
 import com.dongl.zuul.builder.GatewayAuthorityBuilder;
+import com.dongl.zuul.feign.AuthorizationServiceFeign;
 import com.dongl.zuul.mapper.BlacklistMapper;
 import com.dongl.zuul.mapper.entity.MeiteBlacklist;
 import com.netflix.zuul.context.RequestContext;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 /**
@@ -24,6 +27,9 @@ import java.util.Map;
 public class VerificationBuild implements GatewayAuthorityBuilder {
     @Autowired
     private BlacklistMapper blacklistMapper;
+
+    @Autowired
+    private AuthorizationServiceFeign verificaCodeServiceFeign;
 
     @Override
     public Boolean blackBlock(RequestContext context, String ipAddres) {
@@ -52,11 +58,45 @@ public class VerificationBuild implements GatewayAuthorityBuilder {
     }
 
 
+    @Override
+    public Boolean apiAuthority(RequestContext ctx, HttpServletRequest request) {
+        String path = request.getServletPath();
+        log.info(">>>>>servletPath:" + path + ",servletPath.substring(0, 5):" + path.substring(0, 5));
+        if (!path.substring(0, 7).equals("/public")) {
+            return true;
+        }
+
+        String accessToken = request.getParameter("accessToken");
+        log.info(">>>>>accessToken验证:" + accessToken);
+        if (StringUtils.isEmpty(accessToken)){
+            resultError(ctx,"accessToken cannot be empty!");
+            return false;
+        }
+
+        // 调用接口验证accessToken是否失效
+        BaseResponse appInfo = verificaCodeServiceFeign.getAppInfo(accessToken);
+        if (!isSuccess(appInfo)){
+            resultError(ctx, appInfo.getMsg());
+            return false;
+        }
+        return true;
+    }
 
     private void resultError(RequestContext ctx, String errorMsg) {
         ctx.setResponseStatusCode(401);
         // 网关响应为false 不会转发服务
         ctx.setSendZuulResponse(false);
         ctx.setResponseBody(errorMsg);
+    }
+
+    // 接口直接返回true 或者false
+    public Boolean isSuccess(BaseResponse<?> baseResp) {
+        if (baseResp == null) {
+            return false;
+        }
+        if (!baseResp.getCode().equals(Constants.HTTP_RES_CODE_200)) {
+            return false;
+        }
+        return true;
     }
 }

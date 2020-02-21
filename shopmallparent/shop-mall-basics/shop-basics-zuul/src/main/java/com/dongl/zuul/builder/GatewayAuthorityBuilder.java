@@ -3,7 +3,6 @@ package com.dongl.zuul.builder;
 import com.netflix.zuul.context.RequestContext;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * @Description: 建造者模式，用于封装网关过滤中的 ip拦截，请求参数验签，XSS攻击等功能。
@@ -26,4 +25,11 @@ public interface GatewayAuthorityBuilder {
      * @Date: 2020/2/21 19:27
      **/
     Boolean toVerifyMap(RequestContext context , String ipAddres , HttpServletRequest request);
+
+    /**
+     * api权限控制，拦截第三方接入平台时，进行控制
+     *
+     * @return
+     */
+    Boolean apiAuthority(RequestContext ctx, HttpServletRequest request);
 }

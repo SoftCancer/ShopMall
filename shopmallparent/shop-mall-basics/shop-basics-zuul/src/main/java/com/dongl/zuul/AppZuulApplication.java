@@ -12,6 +12,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
@@ -29,6 +30,7 @@ import java.util.List;
  */
 @EnableSwagger2Doc   // 开启Swagger功能
 @EnableZuulProxy
+@EnableFeignClients
 @EnableEurekaClient
 //@EnableApolloConfig  // 开启阿波罗
 @SpringBootApplication

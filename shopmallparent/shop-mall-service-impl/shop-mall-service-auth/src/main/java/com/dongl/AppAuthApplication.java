@@ -7,16 +7,11 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
- * 认证启动
- * 
- * 
- * @description:
- * @author: 97后互联网架构师-余胜军
- * @contact: QQ644064779、微信yushengjun644 www.mayikt.com
- * @date: 2019年1月3日 下午3:03:17
- * @version V1.0
- * @Copyright 该项目“基于SpringCloud2.x构建微服务电商项目”由每特教育|蚂蚁课堂版权所有，未经过允许的情况下，
- *            私自分享视频和源码属于违法行为。
+ *  验证认证，第三方访问需要启动：shop-basics-eureka ，shop-basics-zuul，
+ *  shop-mall-service-pay ，shop-mall-service-auth 四个模块。
+ * 访问地址：
+ *  http://127.0.0.1/public/api-pay/cratePayToken?payAmount=3000&orderId=3234567&userId=12343&accessToken=auth_66f3266b4cc640bab6d84be0185f0a04
+ *  其中 ：/public/api-pay/  是通过网关进行映射。
  */
 @SpringBootApplication
 @EnableEurekaClient
