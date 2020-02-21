@@ -12,6 +12,11 @@
     <artifactId>shop-basics-zuul</artifactId>
 
     <dependencies>
+        <dependency>
+            <groupId>com.dongl</groupId>
+            <artifactId>shop-mall-common-core-web</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
         <!-- 整合网关依赖 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
