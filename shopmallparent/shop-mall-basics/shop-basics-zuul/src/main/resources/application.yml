@@ -1,0 +1,62 @@
+### 服务启动端口
+server:
+  port: 80
+
+### 服务名称（服务注册到eureka 的名称）
+spring:
+  application:
+    name: app-dongl-zuul
+  redis:
+    host: 192.168.1.107
+    port: 6379
+    password: 123456
+    jedis:
+      pool:
+        max-idle: 1
+        max-wait: -1ms
+        max-active: 8
+        min-idle: 1
+
+
+###数据库相关连接
+  datasource:
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://47.94.10.48:3306/shopmall?useUnicode=true&characterEncoding=UTF-8
+
+### 服务注册到 eureka
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8100/eureka
+
+### 配置网关反向代理 访问：http://127.0.0.1:80/swagger-ui.html
+zuul:
+  routes:
+    api-a:
+    ### 以 /api-weixin/访问的转发到微信服务 访问：http://127.0.0.180/api-weixin/getApp
+      path: /api-weixin/**
+      serviceId: app-weixin
+    api-b:
+      path: /api-member/**
+      serviceId: app-member
+    api-c:
+        ### 以 /api-pay/访问转发到订单服务
+      path: /api-pay/**
+      serviceId: app-dongl-pay
+    api-d:
+        ### 以 /api-pay/访问转发到订单服务
+      path: /public/api-pay/**
+      serviceId: app-dongl-pay
+
+dongl:
+  zuul:
+    swagger:
+      document: 微服务项目swagger api
+
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+
+### 微信端口号：8200 8201 8202   会员端口号：8300 83001 83002   有序编号为了后续集群。

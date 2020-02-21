@@ -6,11 +6,13 @@ import com.ctrip.framework.apollo.Config;
 import com.ctrip.framework.apollo.spring.annotation.ApolloConfig;
 import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
 import com.spring4all.swagger.EnableSwagger2Doc;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import springfox.documentation.swagger.web.SwaggerResource;
@@ -28,8 +30,9 @@ import java.util.List;
 @EnableSwagger2Doc   // 开启Swagger功能
 @EnableZuulProxy
 @EnableEurekaClient
-@EnableApolloConfig  // 开启阿波罗
+//@EnableApolloConfig  // 开启阿波罗
 @SpringBootApplication
+@MapperScan(basePackages = "com.dongl.zuul.mapper")
 public class AppZuulApplication {
     
     /**
@@ -44,7 +47,7 @@ public class AppZuulApplication {
      *  第三版 通过value注解 取 阿波罗的Json
      * @Date: 2020/2/4 15:46
      **/
-    @Value("${dongl.zuul.swaggerDocument}")
+    @Value("${dongl.zuul.swagger.document}")
     private String swaggerDocument;
 
 
