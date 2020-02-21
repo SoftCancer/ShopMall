@@ -26,6 +26,7 @@
         <module>shop-mall-service-api-member</module>
         <module>shop-mall-service-api-good</module>
         <module>shop-mall-service-api-pay</module>
+        <module>shop-mall-service-api-auth</module>
     </modules>
 
     <dependencies>
