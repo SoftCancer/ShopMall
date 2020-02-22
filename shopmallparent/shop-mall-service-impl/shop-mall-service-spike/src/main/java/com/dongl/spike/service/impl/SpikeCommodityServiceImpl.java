@@ -48,6 +48,8 @@ public class SpikeCommodityServiceImpl extends BaseApiService implements ISpikeC
         if (null == seckillId){
             return setResultError("seckillId  cannot be empty");
         }
+        /**
+         *  第一版：秒杀简单实现
         // 2. 限制用户频繁操作，通过向Redis存放用户信息，再次存放时返回用户是否已存在。
         Boolean bool = redisUtil.setNx(phone,seckillId+"",10L);
         if (!bool){
@@ -64,11 +66,12 @@ public class SpikeCommodityServiceImpl extends BaseApiService implements ISpikeC
         int seckill = seckillMapper.inventoryDeductionTwo(seckillId,version);
 
         // 方式一 end
+         **/
         /**
          *  方式一和方式二区别：
          *  方式一 使用的是乐观锁，若有200 个请求 100个商品，则100个商品不会被全部销售。
          *  方式二： 使用的是数据库自带的 行级锁，属于悲观锁，若有200 个请求 100个商品，则会被全部销售。
-         **/
+
         // 方式二 star
         // int seckill = seckillMapper.inventoryDeduction(seckillId);
         // 方式二 end
@@ -87,6 +90,9 @@ public class SpikeCommodityServiceImpl extends BaseApiService implements ISpikeC
         if (!toDaoResult(order)){
             return setResultError("Please try again later");
         }
+         **/
+
+
         log.info("秒杀成功！");
         return setResultSuccess("Congratulations on your success. Please pay as soon as possible");
     }
