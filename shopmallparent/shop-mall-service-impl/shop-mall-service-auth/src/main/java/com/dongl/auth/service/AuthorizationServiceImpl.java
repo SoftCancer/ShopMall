@@ -64,6 +64,12 @@ public class AuthorizationServiceImpl extends BaseApiService implements IAuthori
     /**
      * appId ：是不可变的。
      * appSecret ： 是可变的，主要防止密钥泄漏时，可以重新生成：appSecret，即可停止第三方登录。
+     * 设计流程：
+     * 1.通过在网关服务模块中配置：/public/api-pay/**  ，使外接平台访问时，实现路由跳转。
+     * 2.网关对访问地址进行拦截，判断是否为外界平台访问。
+     *   2.1 若是外接平台访问，则进行accessToken 判断。
+     *   2.2 否则不进行判断。
+     *
      * 访问：http://127.0.0.1:9500/getAccessToken?appId=b50c47fb7e414be7bfcf1e78b56c3afa&appSecret=72AC3FE58255562886D00154C81D5343
      * 需要对 redis和mysql 进行事务处理。暂时没实现
      * @Description: 使用appId 和appSecret 获取AccessToken

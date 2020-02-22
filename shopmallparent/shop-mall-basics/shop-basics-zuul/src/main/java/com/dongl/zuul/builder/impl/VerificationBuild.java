@@ -60,12 +60,15 @@ public class VerificationBuild implements GatewayAuthorityBuilder {
 
     @Override
     public Boolean apiAuthority(RequestContext ctx, HttpServletRequest request) {
+        // 1. 获取请求路径
         String path = request.getServletPath();
         log.info(">>>>>servletPath:" + path + ",servletPath.substring(0, 5):" + path.substring(0, 5));
+        // 2. 截取路径中是否包含，/public 字符串，不包含说明为站内访问，直接放行。
         if (!path.substring(0, 7).equals("/public")) {
             return true;
         }
 
+        // 3. 获取token
         String accessToken = request.getParameter("accessToken");
         log.info(">>>>>accessToken验证:" + accessToken);
         if (StringUtils.isEmpty(accessToken)){
@@ -73,7 +76,7 @@ public class VerificationBuild implements GatewayAuthorityBuilder {
             return false;
         }
 
-        // 调用接口验证accessToken是否失效
+        // 4. 调用接口验证accessToken是否失效
         BaseResponse appInfo = verificaCodeServiceFeign.getAppInfo(accessToken);
         if (!isSuccess(appInfo)){
             resultError(ctx, appInfo.getMsg());
