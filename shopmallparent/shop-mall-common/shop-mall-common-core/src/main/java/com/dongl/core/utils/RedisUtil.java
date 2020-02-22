@@ -1,5 +1,6 @@
 package com.dongl.core.utils;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +56,38 @@ public class RedisUtil {
 		setString(key, data, null);
 	}
 
+
+    /**
+     * 存放string类型,如果key 存在返回：false，不存在返回 :true
+     * @param key
+     *            key
+     * @param value
+     *            数据
+     * @param timeout
+     *            超时间
+     */
+    public Boolean setNx(String key, String value, Long timeout) {
+        boolean bool = stringRedisTemplate.opsForValue().setIfAbsent(key, value);
+        try {
+            if (timeout != null) {
+                stringRedisTemplate.expire(key, timeout, TimeUnit.SECONDS);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return bool;
+    }
+
+    /**
+     * 存放 List 类型数据
+     * @Description:
+     * @Author: YaoGuangXun
+     * @Date: 2020/2/23 1:11
+     **/
+    public void setList(String key , List<String> list){
+        stringRedisTemplate.opsForList().leftPushAll(key,list);
+    }
+
 	/**
 	 * 根据key查询string类型
 	 * 
@@ -65,6 +98,17 @@ public class RedisUtil {
 		String value = stringRedisTemplate.opsForValue().get(key);
 		return value;
 	}
+
+	/**
+	 *  移除key 集合中最左侧元素并返回移除元素。
+	 * @Author: YaoGuangXun
+	 * @Date: 2020/2/23 1:44
+	 **/
+	public String getListString(String key){
+        String value = stringRedisTemplate.opsForList().leftPop(key);
+        return value;
+    }
+
 
 	/**
 	 * 根据对应的key删除key
