@@ -34,4 +34,17 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://47.94.10.48:3306/shopmall?useUnicode=true&characterEncoding=UTF-8
 
-  
+  rabbitmq:
+  ####连接地址
+    host: 192.168.1.107
+   ####端口号
+    port: 5672
+   ####账号
+    username: root
+   ####密码
+    password: 123456
+   ### 地址
+    virtual-host: admin_host
+    ###开启消息确认机制 confirms
+    publisher-confirms: true
+    publisher-returns: true

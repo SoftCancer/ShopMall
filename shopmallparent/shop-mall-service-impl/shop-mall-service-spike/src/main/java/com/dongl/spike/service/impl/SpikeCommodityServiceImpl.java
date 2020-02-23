@@ -5,6 +5,7 @@ import com.dongl.base.BaseApiService;
 import com.dongl.base.BaseResponse;
 import com.dongl.core.token.GenerateToken;
 import com.dongl.core.utils.RedisUtil;
+import com.dongl.spike.producer.SpikeCommodityProducer;
 import com.dongl.spike.service.ISpikeCommodityService;
 import com.dongl.spike.service.mapper.IOrderMapper;
 import com.dongl.spike.service.mapper.ISeckillMapper;
@@ -38,6 +39,9 @@ public class SpikeCommodityServiceImpl extends BaseApiService implements ISpikeC
 
     @Autowired
     private GenerateToken generateToken;
+
+    @Autowired
+    private SpikeCommodityProducer spikeCommodityProducer;
 
     @Override
     public BaseResponse spike(String phone, Long seckillId) {
@@ -92,13 +96,34 @@ public class SpikeCommodityServiceImpl extends BaseApiService implements ISpikeC
         }
          **/
 
+        /**
+         *  第二版 ：通过预设置的Token 和RabbitMQ的异步处理实现秒杀
+         **/
+        // 2.从redis从获取对应的秒杀token
+        String seckillToken = generateToken.getListKeyToken(seckillId + "");
+        if (StringUtils.isEmpty(seckillToken)) {
+            log.info(">>>seckillId:{}, 亲，该秒杀已经售空，请下次再来!", seckillId);
+            return setResultError("亲，该秒杀已经售空，请下次再来!");
+        }
+        log.info(">>>seckillToken:{}, 已成功被领取!", seckillToken);
 
-        log.info("秒杀成功！");
-        return setResultSuccess("Congratulations on your success. Please pay as soon as possible");
+        // 3.获取到秒杀token之后，异步放入mq中实现修改商品的库存
+        sendSeckillMsg(seckillId, phone);
+        log.info("正在火速为你抢购中.......！");
+        return setResultSuccess("正在排队中.......");
     }
 
 
-
+    /**
+     * 获取到秒杀token之后，异步放入 mq 中实现修改商品的库存
+     */
+    @Async
+    private void sendSeckillMsg(Long seckillId, String phone) {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("seckillId", seckillId);
+        jsonObject.put("phone", phone);
+        spikeCommodityProducer.send(jsonObject);
+    }
 
     /**
      * seckillId: 秒杀商品id

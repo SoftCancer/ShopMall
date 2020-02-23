@@ -1,6 +1,7 @@
 package com.dongl.core.token;
 
 import com.dongl.core.utils.RedisUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Component
+@Slf4j
 public class GenerateToken {
 
     @Autowired
@@ -89,11 +91,16 @@ public class GenerateToken {
         return listToken;
     }
 
+    /**
+     * @Description: 获取List中的Token并移除。
+     * @Author: YaoGuangXun
+     * @Date: 2020/2/23 2:01
+     **/
     public String getListKeyToken(String key) {
         String value = redisUtil.getListString(key);
+        log.info("获取Token {} 并移除",value);
         return value;
     }
-
 
     /**
 	 * 移除token
