@@ -103,6 +103,16 @@ public class GenerateToken {
     }
 
     /**
+     * @Description: 获取列表的长度， 如果列表 key 不存在，则 key 被解释为一个空列表，返回 0 。
+     *  如果 key 不是列表类型，返回一个错误。
+     * @Author: YaoGuangXun
+     * @Date: 2020/2/23 15:23
+     **/
+    public Long getListSize(String key){
+        Long size = redisUtil.getListSize(key);
+        return size;
+    }
+    /**
 	 * 移除token
 	 * 
 	 * @param token

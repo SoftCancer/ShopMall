@@ -149,6 +149,13 @@ public class SpikeCommodityServiceImpl extends BaseApiService implements ISpikeC
         if (seckillEntity == null) {
             return setResultError("商品信息不存在!");
         }
+        Long size = generateToken.getListSize(seckillId+"");
+        if (size.equals(tokenQuantity)){
+            return setResultSuccess(size +" 个令牌已成功生成！");
+        }
+        if (size > 0){
+            return setResultSuccess("目前还有 "+size +" 个令牌");
+        }
         // 2.使用多线程异步生产令牌token,存放到Redis中。
         createSeckillToken(seckillId, tokenQuantity);
         return setResultSuccess("令牌正在生成中.....");
