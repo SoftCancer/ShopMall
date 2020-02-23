@@ -21,7 +21,7 @@ public class ApiCheckTokenResponsibility extends BaseHandler implements IGateway
 
     @Override
     public void service(RequestContext ctx, String ipAddres , HttpServletRequest req, HttpServletResponse response) {
-        log.info(">>>>>>> 流程3： API 验证token");
-        return ;
+        log.info(">>>>>>>>>> 第三关 ：API 验证签名token！ ");
+        nextGatewayResponsibility.service(ctx, ipAddres, req, response);
     }
 }

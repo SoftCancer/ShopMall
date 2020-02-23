@@ -45,7 +45,11 @@
             <artifactId>guava</artifactId>
             <version>20.0</version>
         </dependency>
-
+        <!-- springcloud feign组件 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

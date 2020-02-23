@@ -21,6 +21,6 @@ public class ApiAuthResponsibility extends BaseHandler implements IGatewayRespon
 
     @Override
     public void service(RequestContext ctx, String ipAddres, HttpServletRequest req, HttpServletResponse response) {
-        this.nextGatewayResponsibility.service(ctx, ipAddres, req, response);
+        log.info(">>>>>>>>>> 第四关 ：API 验证 token！ ");
     }
 }

@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
- * @Description: 责任链调用
+ * @Description: 责任链调用，在网关过滤器(GatewayFilter.java)中调用该方法。
+ * 该项目中暂未使用
  * @author: YaoGuangXun
  * @date: 2020/2/22 13:28
  * @Version: 1.0

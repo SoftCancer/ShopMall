@@ -49,6 +49,10 @@ zuul:
         ### 以 /public/api-auth/  表示第三方访问支付接口，不附带accessToken，则第三方无法访问
       path: /public/api-pay/**
       serviceId: app-dongl-pay
+    api-e:
+        ### 以 /api-pay/访问转发到订单服务
+      path: /api-spike/**
+      serviceId: app-dongl-spike
 
 dongl:
   zuul:

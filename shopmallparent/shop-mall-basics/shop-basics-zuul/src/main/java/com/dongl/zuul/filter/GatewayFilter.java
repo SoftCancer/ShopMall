@@ -6,6 +6,7 @@ import com.dongl.zuul.builder.GatewayDirectorBuild;
 import com.dongl.zuul.builder.impl.VerificationBuild;
 import com.dongl.zuul.mapper.BlacklistMapper;
 import com.dongl.zuul.mapper.entity.MeiteBlacklist;
+import com.dongl.zuul.responsibility.ResponsibilityClient;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
@@ -15,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 
 /**
@@ -29,18 +31,29 @@ public class GatewayFilter extends ZuulFilter {
 
     @Autowired
     private GatewayDirectorBuild gatewayDirectorBuild;
+
+    @Autowired
+    private ResponsibilityClient responsibilityClient;
     @Override
     public Object run() throws ZuulException {
         // 1.获取请求对象
-        RequestContext requestContext = RequestContext.getCurrentContext();
-        HttpServletRequest request = requestContext.getRequest();
+        RequestContext context = RequestContext.getCurrentContext();
+        HttpServletRequest request = context.getRequest();
+        HttpServletResponse response = context.getResponse();
+
         // 2.获取真实ip
         String ipAddress = NetworkUtils.getIpAddr(request);
-        // 3. 通过建造者模式整合 ip拦截，参数验签，xss等
-        gatewayDirectorBuild.director(requestContext,ipAddress,request);
+
+        /**
+         *   // 3. 通过建造者模式整合 ip拦截，参数验签，xss等
+         *   gatewayDirectorBuild.director(requestContext,ipAddress,request);
+         **/
+        // 3. 把上边的建造者模式修改为 责任链模式
+        responsibilityClient.responsibility(context,ipAddress,request,response);
+
         // 4. 过滤请求参数、防止XSS攻击
-        Map<String, List<String>> filterParameters = filterParameters(request,requestContext);
-        requestContext.setRequestQueryParams(filterParameters);
+        Map<String, List<String>> filterParameters = filterParameters(request,context);
+        context.setRequestQueryParams(filterParameters);
 //        HttpServletResponse response = requestContext.getResponse();
         return null;
     }

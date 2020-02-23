@@ -12,14 +12,16 @@ import com.dongl.spike.service.mapper.ISeckillMapper;
 import com.dongl.spike.service.mapper.entity.OrderEntity;
 import com.dongl.spike.service.mapper.entity.SeckillEntity;
 import com.dongl.web.utils.DateUtils;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @Description:
+ * @Description: 通过网关路由进行访问：
  * @author: YaoGuangXun
  * @date: 2020/2/22 18:10
  * @Version: 1.0
@@ -44,7 +46,10 @@ public class SpikeCommodityServiceImpl extends BaseApiService implements ISpikeC
     private SpikeCommodityProducer spikeCommodityProducer;
 
     @Override
+    @Transactional
+    @HystrixCommand(fallbackMethod = "spikeFallback")
     public BaseResponse spike(String phone, Long seckillId) {
+        log.info(">>>>>>秒杀接口线程名称:" + Thread.currentThread().getName());
         // 1. 验证参数
         if (StringUtils.isEmpty(phone)){
             return setResultError("mobile number cannot be empty");
@@ -113,7 +118,14 @@ public class SpikeCommodityServiceImpl extends BaseApiService implements ISpikeC
         return setResultSuccess("正在排队中.......");
     }
 
-
+    /**
+     * @Description: 通过 Hystrix 实现服务降级，防止服务雪崩。
+     * @Author: YaoGuangXun
+     * @Date: 2020/2/23 18:46
+     **/
+    private BaseResponse<JSONObject> spikeFallback(String phone, Long seckillId) {
+        return setResultError("服务器忙,请稍后重试!");
+    }
     /**
      * 获取到秒杀token之后，异步放入 mq 中实现修改商品的库存
      */

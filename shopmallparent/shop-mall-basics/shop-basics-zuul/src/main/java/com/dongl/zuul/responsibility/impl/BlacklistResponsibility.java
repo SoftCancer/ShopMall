@@ -26,6 +26,7 @@ public class BlacklistResponsibility extends BaseHandler implements IGatewayResp
     private BlacklistMapper blacklistMapper;
     @Override
     public void service(RequestContext ctx,String ipAddres ,HttpServletRequest req, HttpServletResponse response) {
+        log.info(">>>>>>>>>> 第二关 ：黑名单ip拦截！ ");
         // 根据ip地址查询数据库中是否设置了黑名单，可以把黑名单存入Redis或Apollo中
         MeiteBlacklist meiteBlacklist = blacklistMapper.findBlacklist(ipAddres);
         // 不等于空说明被拉入了黑名单，进入判断返回 false。

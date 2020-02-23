@@ -14,11 +14,15 @@ public class SpringContextUtil implements ApplicationContextAware {
 	 */
 	private static ApplicationContext applicationContext;
 
-	@Autowired
+
+    @Autowired
     @Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-		this.applicationContext = applicationContext;
+        SpringContextUtil.applicationContext = applicationContext;
 	}
+
+
+
 
 	/**
 	 * 获取applicationContext

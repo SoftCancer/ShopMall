@@ -3,8 +3,6 @@ package com.dongl.zuul.responsibility.factory;
 import com.dongl.core.utils.SpringContextUtil;
 import com.dongl.zuul.responsibility.IGatewayResponsibility;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @Description:
@@ -21,14 +19,22 @@ public class FactoryHandler {
      * @Date: 2020/2/22 13:26
      **/
     public static IGatewayResponsibility getOneResponsibility(){
-        // 1.黑名单判断
-        IGatewayResponsibility gatewayResponsibility_1= (IGatewayResponsibility) SpringContextUtil.getBean("blacklistResponsibility");
-        // 2. api验证签名
-        IGatewayResponsibility gatewayResponsibility_2 = (IGatewayResponsibility) SpringContextUtil.getBean("apiAuthResponsibility");
-        gatewayResponsibility_1.setNextResponsibility(gatewayResponsibility_2);
-        // 3. api 接口验证token
-        IGatewayResponsibility gatewayResponsibility_3 = (IGatewayResponsibility) SpringContextUtil.getBean("apiCheckTokenResponsibility");
-        gatewayResponsibility_2.setNextResponsibility(gatewayResponsibility_3);
-        return gatewayResponsibility_1;
+
+        // 1. 频繁操作限流
+        IGatewayResponsibility seckillCurrentLimitResponsibility= (IGatewayResponsibility) SpringContextUtil.getBean("seckillCurrentLimitResponsibility");
+
+        // 2.黑名单判断
+        IGatewayResponsibility blacklistResponsibility= (IGatewayResponsibility) SpringContextUtil.getBean("blacklistResponsibility");
+        seckillCurrentLimitResponsibility.setNextResponsibility(blacklistResponsibility);
+
+        // 3. api验证签名
+        IGatewayResponsibility apiAuthResponsibility = (IGatewayResponsibility) SpringContextUtil.getBean("apiAuthResponsibility");
+        blacklistResponsibility.setNextResponsibility(apiAuthResponsibility);
+
+        // 4. api 接口验证token
+        IGatewayResponsibility apiCheckTokenResponsibility = (IGatewayResponsibility) SpringContextUtil.getBean("apiCheckTokenResponsibility");
+        apiAuthResponsibility.setNextResponsibility(apiCheckTokenResponsibility);
+
+        return seckillCurrentLimitResponsibility;
     }
 }
