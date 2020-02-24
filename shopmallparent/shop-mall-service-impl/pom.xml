@@ -19,6 +19,7 @@
         <module>shop-mall-service-integral</module>
         <module>shop-mall-service-auth</module>
         <module>shop-mall-service-spike</module>
+        <module>shop-mall-jenkins</module>
     </modules>
 
     <dependencies>
