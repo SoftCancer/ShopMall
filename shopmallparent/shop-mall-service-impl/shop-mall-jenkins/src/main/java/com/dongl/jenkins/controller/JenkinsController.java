@@ -14,6 +14,6 @@ public class JenkinsController {
 
     @GetMapping("/jenkins")
     public String getJenkins(){
-        return "搭建docker+Jenkins环境实现自动化部署";
+        return " 搭建 docker+Jenkins 环境实现自动化部署！";
     }
 }
