@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>支付宝退款</title>
+</head>
+<body>
+<h3>退款成功！</h3><br>
+商户订单号 : <span th:text="${out_trade_no}"></span> <br>
+退款金额 : <span th:text="${refund_amount}"></span> <br>
+退款理由 : <span th:text="${refund_reason}"></span> <br>
+付款时间 : <span th:text="${data}"></span> <br>
+</body>
+</html>

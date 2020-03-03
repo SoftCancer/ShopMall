@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>支付成功</title>
+</head>
+<body>
+<h3>支付成功！</h3><br>
+商户订单号 : <span th:text="${out_trade_no}"></span> <br>
+结果 : <span th:text="${result}"></span> <br>
+付款时间 : <span th:text="${data}"></span> <br>
+</body>
+</html>
