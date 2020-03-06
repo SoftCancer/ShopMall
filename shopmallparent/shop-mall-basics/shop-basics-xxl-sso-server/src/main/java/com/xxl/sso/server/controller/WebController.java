@@ -6,7 +6,6 @@ import com.dongl.member.input.dto.UserLoginInpDTO;
 import com.dongl.member.output.dto.UserOutDTO;
 import com.dongl.web.base.BaseWebController;
 import com.xxl.sso.server.figen.IMemberServiceFeign;
-import com.xxl.sso.server.service.UserService;
 import core.conf.Conf;
 import core.login.SsoWebLoginHelper;
 import core.store.SsoLoginStore;
@@ -24,14 +23,13 @@ import java.util.UUID;
 
 /**
  * sso server (for web)
- *
+ * 主要在该类中实现用户信息查询，
+ * 认证用户信息，把用户信息存储到redis中。
  * @author xuxueli 2017-08-01 21:39:47
  */
 @Controller
 public class WebController extends BaseWebController {
 
-    @Autowired
-    private UserService userService;
 
     @Autowired
     private IMemberServiceFeign memberServiceFeign;
